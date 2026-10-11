@@ -6,6 +6,6 @@
    youtubeUrl, instagramUrl: links do rodapé. Vazio = o link não aparece. */
 var CONFIG = {
   listEndpoint: '',
-  youtubeUrl: '',
+  youtubeUrl: 'https://www.youtube.com/@souzainvesteoficial',
   instagramUrl: ''
 };
