@@ -1,4 +1,4 @@
-<!-- Modelo de post do blog. Preenchido por _sistema/publicar_site.py no OS. Placeholders: {{titulo}} {{descricao}} {{numero}} {{publicado_em}} {{publicado_em_br}} {{video_url}} {{capa}} {{descricao_video}} {{conteudo}} {{planilha}} {{simulador}} {{simulador_botao}}. -->
+<!-- Modelo de post do blog. Preenchido por _sistema/publicar_site.py no OS. Placeholders: {{titulo}} {{descricao}} {{numero}} {{publicado_em}} {{publicado_em_br}} {{video_url}} {{video_id}} {{capa}} {{capa_og}} {{serie}} {{serie_href}} {{tema_etiqueta}} {{leitura}} {{linha_fina}} {{compartilhar}} {{sumario}} {{descricao_video}} {{conteudo}} {{resumindo}} {{planilha}} {{simulador}} {{simulador_botao}} {{relacionados}}. -->
 <!doctype html>
 <html lang="pt-BR">
 <head>
@@ -6,15 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{{titulo}} | Souza Investe</title>
 <meta name="description" content="{{descricao}}">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="Souza Investe">
 <meta property="og:title" content="{{titulo}} | Souza Investe">
 <meta property="og:description" content="{{descricao}}">
-<meta property="og:image" content="../../assets/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Souza Investe, Prova Real">
+<meta property="og:image" content="{{capa_og}}">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta property="og:image:alt" content="Capa do vídeo: {{titulo}}">
+<meta property="article:published_time" content="{{publicado_em}}">
+<meta property="article:author" content="Matheus Souza">
+<meta property="article:section" content="{{serie}}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,33 +47,68 @@
   </div>
 </header>
 <main id="conteudo">
-<article>
-<div class="wrap intro">
-  <p class="etiqueta">Prova Real · {{numero}} · <time datetime="{{publicado_em}}">{{publicado_em_br}}</time></p>
+<article class="post">
+<div class="wrap intro intro-post">
+  <nav class="trilha" aria-label="Você está em">
+    <ol>
+      <li><a href="../../">Início</a></li>
+      <li><a href="../../blog/">Blog</a></li>
+      <li><a href="{{serie_href}}">{{serie}}</a></li>
+    </ol>
+  </nav>
+  <p class="etiqueta meta-linha">{{serie}} · {{numero}} · <time datetime="{{publicado_em}}">{{publicado_em_br}}</time> · {{leitura}} min de leitura</p>
   <h1 class="titulo-pagina titulo-post">{{titulo}}</h1>
+  <p class="linha-fina">{{linha_fina}}</p>
+  <p class="autor-linha">Por <a href="../../sobre/">Matheus Souza</a>{{tema_etiqueta}}</p>
   <div class="post-acoes">
     <a class="botao botao-tinta" href="{{video_url}}" rel="noopener">Assistir no YouTube</a>
     {{simulador_botao}}
   </div>
-  <a class="post-capa" href="{{video_url}}" rel="noopener"><img src="{{capa}}" alt="Capa do vídeo: {{titulo}}" width="480" height="360" loading="lazy"></a>
+  {{compartilhar}}
 </div>
 <div class="wrap secao secao-colada">
-  <div class="prosa">
-    <h2>Sobre o vídeo</h2>
-    {{descricao_video}}
+  <div class="player" data-player="{{video_id}}">
+    <a class="player-capa" href="{{video_url}}" rel="noopener"><img src="{{capa}}" alt="Capa do vídeo: {{titulo}}" width="480" height="360" loading="lazy"></a>
+    <button class="player-botao" type="button" data-player-botao hidden><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>Assistir aqui</button>
+  </div>
+  <div class="post-grade">
+    <div class="post-lado">
+      {{sumario}}
+      <section class="cartao autor autor-cartao" aria-labelledby="autor-titulo">
+        <div class="autor-foto" aria-hidden="true"><span>MS</span></div>
+        <div class="autor-texto">
+          <p class="etiqueta">Quem faz a conta</p>
+          <h2 id="autor-titulo">Matheus Souza</h2>
+          <p>Analista de dados. Investe com salário, não com herança, e grava fora do horário do trabalho. Aqui ele testa com número o que dizem sobre dinheiro: a taxa, o prazo e o imposto ficam na tela.</p>
+          <p><a class="link-forte" href="../../sobre/">Mais sobre o canal<svg class="seta" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></p>
+        </div>
+      </section>
+    </div>
+    <div class="prosa post-prosa">
+      <h2 id="sobre">Sobre o vídeo</h2>
+      {{descricao_video}}
 
-    <h2>Como fiz a conta</h2>
-    {{conteudo}}
+      <h2 id="conta">Como fiz a conta</h2>
+      {{conteudo}}
 
-    <h2>A planilha</h2>
-    {{planilha}}
+      {{resumindo}}
 
-    <h2>O simulador</h2>
-    {{simulador}}
+      <h2 id="planilha">A planilha</h2>
+      {{planilha}}
 
-    <p class="linha-legal">Conteúdo educacional com taxas genéricas. Não é recomendação de investimento. Tabela do IR e regras do FGC conforme vigentes em outubro de 2026.</p>
+      <h2 id="simulador">O simulador</h2>
+      {{simulador}}
+
+      <div class="post-fim">
+        <p class="post-fim-texto">Valeu a conta? Manda para quem precisa ver o número.</p>
+        {{compartilhar}}
+      </div>
+
+      <p class="linha-legal">Conteúdo educacional com taxas genéricas. Não é recomendação de investimento. Tabela do IR e regras do FGC conforme vigentes em outubro de 2026.</p>
+    </div>
   </div>
 </div>
+{{relacionados}}
 </article>
 <section class="lista" id="lista" aria-labelledby="lista-titulo">
   <div class="wrap lista-grade">

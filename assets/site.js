@@ -1,5 +1,5 @@
-/* Comportamento comum a todas as páginas: tema, redes do rodapé, lista de e-mail e a lista
-   de vídeos. Sem dependências. Cada parte só roda se o elemento dela existir na página. */
+/* Comportamento comum a todas as páginas: tema, redes do rodapé, lista de e-mail, a lista
+   de vídeos e, no blog, compartilhar, player, filtro por conta e botão do canal. Sem dependências. Cada parte só roda se o elemento dela existir na página. */
 (function () {
   'use strict';
 
@@ -175,6 +175,81 @@
         videosHost.innerHTML = '<div class="videos-lista">' + h + '</div>';
       })
       .catch(function () { /* sem o arquivo, fica o estado vazio do HTML */ });
+  }
+
+  /* ---------- Blog: compartilhar ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-compartilhar]'), function (bloco) {
+    var url = location.href.split('#')[0];
+    var titulo = bloco.getAttribute('data-titulo') || document.title;
+    var links = {
+      whatsapp: 'https://wa.me/?text=' + encodeURIComponent(titulo + ' ' + url),
+      x: 'https://twitter.com/intent/tweet?text=' + encodeURIComponent(titulo) + '&url=' + encodeURIComponent(url),
+      linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url)
+    };
+    Array.prototype.forEach.call(bloco.querySelectorAll('a[data-rede]'), function (a) {
+      var rede = a.getAttribute('data-rede');
+      if (links[rede]) a.href = links[rede];
+    });
+    var copiar = bloco.querySelector('[data-copiar]');
+    if (!copiar) return;
+    if (!navigator.clipboard || !window.isSecureContext) { copiar.hidden = true; return; }
+    copiar.hidden = false;
+    copiar.addEventListener('click', function () {
+      var texto = copiar.textContent;
+      navigator.clipboard.writeText(url).then(function () {
+        copiar.textContent = 'Link copiado';
+        setTimeout(function () { copiar.textContent = texto; }, 2000);
+      }).catch(function () {
+        copiar.textContent = 'Não deu; copie da barra';
+        setTimeout(function () { copiar.textContent = texto; }, 2500);
+      });
+    });
+  });
+
+  /* ---------- Blog: player que só carrega o YouTube no clique ---------- */
+  Array.prototype.forEach.call(document.querySelectorAll('[data-player]'), function (player) {
+    var id = player.getAttribute('data-player') || '';
+    var botao = player.querySelector('[data-player-botao]');
+    if (!botao || !/^[A-Za-z0-9_-]{11}$/.test(id)) return;
+    botao.hidden = false;
+    botao.addEventListener('click', function () {
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+      iframe.title = 'Vídeo no YouTube';
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+      iframe.setAttribute('allowfullscreen', '');
+      player.innerHTML = '';
+      player.appendChild(iframe);
+      player.classList.add('player-ativo');
+    });
+  });
+
+  /* ---------- Blog: filtro por conta ---------- */
+  var filtros = document.querySelector('[data-filtros]');
+  if (filtros) {
+    var botoes = filtros.querySelectorAll('button[data-serie]');
+    var itens = document.querySelectorAll('article[data-serie]');
+    var semResultado = document.querySelector('[data-sem-resultado]');
+    Array.prototype.forEach.call(botoes, function (b) {
+      b.addEventListener('click', function () {
+        var alvo = b.getAttribute('data-serie') || '';
+        var visiveis = 0;
+        Array.prototype.forEach.call(botoes, function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+        Array.prototype.forEach.call(itens, function (it) {
+          var mostra = !alvo || it.getAttribute('data-serie') === alvo;
+          it.hidden = !mostra;
+          if (mostra) visiveis++;
+        });
+        if (semResultado) semResultado.hidden = visiveis > 0;
+      });
+    });
+  }
+
+  /* ---------- Blog: botão do canal, só com youtubeUrl em config.js ---------- */
+  var canal = document.querySelector('[data-youtube-canal]');
+  if (canal && urlSegura(cfg.youtubeUrl)) {
+    canal.href = cfg.youtubeUrl.trim();
+    canal.hidden = false;
   }
 
   function dataBR(iso) {

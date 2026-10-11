@@ -33,6 +33,8 @@ O site não é editado à mão para receber taxa ou vídeo novo. No OS (reposit�
 ```bash
 python _sistema/publicar_site.py            # busca as taxas no Banco Central e gera tudo
 python _sistema/publicar_site.py --sem-rede # sem internet: mantém as taxas anteriores
+python _sistema/publicar_site.py --exemplo --site /caminho/de/uma/copia --sem-rede
+                                            # três posts inventados numa CÓPIA do site, para ver o modelo
 ```
 
 Depois, neste repositório: `git add -A`, commit e push.
@@ -43,11 +45,11 @@ O script descobre esta pasta pela chave `SITE_DIR` em `_sistema/.env` (sem ela, 
 |---|---|
 | `dados/taxas.json` | Selic meta (SGS 432), CDI anualizado (SGS 4389) e IPCA 12 meses (SGS 13522), com data e fonte |
 | `dados/videos.json` | Um item por vídeo publicado: número, título, `video_id`, data, simulador e três linhas da conta |
-| `blog/<slug>/index.html` | Um post por vídeo, a partir de `modelos/post.html` |
-| `blog/index.html` | A lista do blog, a partir de `modelos/blog.html` |
+| `blog/<slug>/index.html` | Um post por vídeo, a partir de `modelos/post.html`: trilha, série, tempo de leitura, linha-fina, compartilhar, player que só carrega o YouTube no clique, sumário, a conta com a caixa de taxas, "Resumindo", relacionados e o `og:image` com a capa do vídeo |
+| `blog/index.html` | A lista do blog, a partir de `modelos/blog.html`: destaque do último post, filtro por conta (só com duas contas ou mais), grade de cards, as quatro contas, os últimos vídeos e o autor. Com nenhum vídeo, o estado "Primeiro texto em breve" |
 | `sitemap.xml`, `robots.txt` | Só com `SITE_URL` definido no `.env`; o script também troca o `og:image` relativo pelo absoluto |
 
-Do OS só saem os campos do frontmatter do roteiro, a seção "Descrição do vídeo" e o `conta.md`. Roteiro completo, radar, ideias e decisões ficam no OS. O vídeo liga ao simulador pelo campo opcional `simulador:` no frontmatter do roteiro (`aporte`, `parcelar`, `fgc` ou `renda`).
+Do OS só saem os campos do frontmatter do roteiro, o `tema` da ideia ligada a ele, a seção "Descrição do vídeo" e o `conta.md`. Roteiro completo, radar, ideias e decisões ficam no OS. O vídeo liga ao simulador pelo campo opcional `simulador:` no frontmatter do roteiro (`aporte`, `parcelar`, `fgc` ou `renda`).
 
 A página `/simuladores/` lê `dados/taxas.json` sem travar a tela: os simuladores desenham com 10% e 4% e trocam para o CDI e o IPCA do arquivo quando ele chega. Se o arquivo faltar, ficam os valores de exemplo e o texto "10% é só um exemplo".
 
@@ -61,7 +63,7 @@ Abra `assets/config.js` e preencha `listEndpoint` com a URL `https://` do proved
 
 O provedor precisa aceitar esse formato e responder com status 2xx (e permitir CORS vindo do domínio do site). Enquanto `listEndpoint` estiver vazio, o formulário aparece desabilitado com o aviso "A lista ainda não está ligada. A planilha de cada vídeo fica no link da descrição." Com o provedor escolhido, revise o texto de `/privacidade/`.
 
-No mesmo arquivo, `youtubeUrl` e `instagramUrl` ligam os links do rodapé. Vazios, os links não aparecem.
+No mesmo arquivo, `youtubeUrl` e `instagramUrl` ligam os links do rodapé e o botão "Ver o canal" do blog. Vazios, os links não aparecem.
 
 ## Links curtos `/s/`
 
