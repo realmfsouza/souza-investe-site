@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Simuladores da Prova Real | Souza Investe</title>
+<meta name="description" content="Quatro simuladores para fazer a conta: R$ 50 por mês, parcelar ou pagar à vista, o que o FGC cobre e renda passiva de R$ 1.000.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Souza Investe">
+<meta property="og:title" content="Simuladores da Prova Real | Souza Investe">
+<meta property="og:description" content="Quatro simuladores para fazer a conta: R$ 50 por mês, parcelar ou pagar à vista, o que o FGC cobre e renda passiva de R$ 1.000.">
+<meta property="og:image" content="../assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Souza Investe, Prova Real">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="../assets/tokens.css">
+<link rel="stylesheet" href="../assets/site.css">
+<link rel="stylesheet" href="../assets/simuladores.css">
+<script>try{var t=localStorage.getItem('si-tema');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script src="../assets/config.js" defer></script>
+<script src="../assets/site.js" defer></script>
+<script src="../assets/simuladores.js" defer></script>
+<script src="../assets/taxas.js" defer></script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo">
+  <div class="wrap topo-linha">
+    <a class="marca" href="../" aria-label="Souza Investe, página inicial"><span class="marca-nome">Souza Investe</span><span class="etiqueta">Prova Real</span></a>
+    <button class="tema" type="button" data-tema data-alvo="dark" aria-label="Usar o tema escuro" hidden><svg class="icone-lua" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg><svg class="icone-sol" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4 6 18M18 6l1.4-1.4"/></svg><span class="tema-texto">Escuro</span></button>
+    <nav class="menu" aria-label="Principal">
+      <ul>
+        <li><a href="../simuladores/" aria-current="page">Simuladores</a></li>
+        <li><a href="../videos/">Vídeos</a></li>
+        <li><a href="../blog/">Blog</a></li>
+        <li><a href="../sobre/">Sobre</a></li>
+        <li><a href="../lista/">Lista</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+<main id="conteudo">
+<div class="sim">
+<div class="wrap sim-intro">
+  <h1 class="titulo-pagina">Simuladores da Prova Real</h1>
+  <p class="texto-guia">Antes de acreditar em qualquer promessa, faça a conta. Mude os números e veja o que acontece com o seu dinheiro.</p>
+  <p class="taxa-linha" id="taxa-linha" hidden><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><path d="M12 7.5h.01"/></svg><span id="taxa-linha-texto"></span></p>
+</div>
+<div id="sim-topo"></div>
+<div class="tabbar">
+  <div class="wrap">
+    <nav class="tabs" role="tablist" aria-label="Simuladores">
+      <button class="tab" role="tab" id="tab-aporte" aria-controls="aporte" aria-selected="true" data-tab="aporte"><span class="n">01</span>R$ 50 por mês</button>
+      <button class="tab" role="tab" id="tab-parcelar" aria-controls="parcelar" aria-selected="false" data-tab="parcelar"><span class="n">02</span>Parcelar ou à vista</button>
+      <button class="tab" role="tab" id="tab-fgc" aria-controls="fgc" aria-selected="false" data-tab="fgc"><span class="n">03</span>Se o banco quebrar</button>
+      <button class="tab" role="tab" id="tab-renda" aria-controls="renda" aria-selected="false" data-tab="renda"><span class="n">04</span>Renda de R$ 1.000</button>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- 01 Aporte mensal -->
+  <section class="panel" id="aporte" role="tabpanel" aria-labelledby="tab-aporte">
+    <p class="tag-serie">Prova Real · 01</p>
+    <h2>A conta honesta de quem começa com pouco</h2>
+    <p class="lede">Aporte no começo de cada mês, juros compostos mês a mês e imposto de renda calculado aporte por aporte, pela tabela regressiva. Sem mágica.</p>
+    <p class="video-plano">Vídeo planejado, ainda não publicado: “Com R$ 50 por mês dá para investir? A conta honesta”.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Seus números</h3>
+        <div class="fields">
+          <div class="field">
+            <label for="a-mensal">Aporte por mês</label>
+            <div class="in"><span class="unit pre">R$</span><input id="a-mensal" type="number" inputmode="decimal" min="0" step="10" value="50"></div>
+          </div>
+          <div class="field">
+            <label for="a-inicial">Já tem guardado</label>
+            <div class="in"><span class="unit pre">R$</span><input id="a-inicial" type="number" inputmode="decimal" min="0" step="100" value="0"></div>
+          </div>
+          <div class="field">
+            <label for="a-taxa">Taxa ao ano</label>
+            <div class="in"><input id="a-taxa" type="number" inputmode="decimal" min="0" max="100" step="0.1" value="10"><span class="unit">% a.a.</span></div>
+            <span class="hint" id="a-taxa-dica">Use a Selic ou o CDI do dia. 10% é só um exemplo.</span>
+          </div>
+          <div class="field">
+            <label for="a-anos">Por quanto tempo</label>
+            <div class="in"><input id="a-anos" type="number" inputmode="numeric" min="1" max="60" step="1" value="10"><span class="unit">anos</span></div>
+          </div>
+          <div class="field">
+            <label for="a-infl">Inflação ao ano</label>
+            <div class="in"><input id="a-infl" type="number" inputmode="decimal" min="0" max="50" step="0.1" value="4"><span class="unit">% a.a.</span></div>
+            <span class="hint">Para mostrar quanto o saldo compra em dinheiro de hoje.</span>
+          </div>
+          <div class="field">
+            <label id="a-ir-label">Imposto de renda</label>
+            <div class="seg" role="group" aria-labelledby="a-ir-label" style="position:relative">
+              <input type="radio" name="a-ir" id="a-ir-sim" value="1" checked><label for="a-ir-sim">CDB, Tesouro</label>
+              <input type="radio" name="a-ir" id="a-ir-nao" value="0"><label for="a-ir-nao">LCI, LCA, poupança</label>
+            </div>
+            <span class="hint">O primeiro grupo paga IR sobre os juros; o segundo é isento.</span>
+          </div>
+        </div>
+      </div>
+      <div class="results">
+        <div class="hero">
+          <p class="label">Saldo líquido no fim do prazo</p>
+          <p class="big" id="a-hero">R$ 0</p>
+          <p class="verdict" id="a-verdict"></p>
+        </div>
+        <div class="tiles">
+          <div class="tile"><p class="k"><span class="dot" style="background:var(--s2)"></span>Você colocou</p><p class="v" id="a-aportado">—</p></div>
+          <div class="tile"><p class="k"><span class="dot" style="background:var(--s1)"></span>Juros ganhos</p><p class="v" id="a-juros">—</p></div>
+          <div class="tile"><p class="k">IR pago no resgate</p><p class="v" id="a-ir">—</p></div>
+          <div class="tile"><p class="k">Vale, em dinheiro de hoje</p><p class="v" id="a-real">—</p></div>
+        </div>
+        <div class="chart">
+          <div class="chart-head"><h4>Mês a mês: o que é seu e o que os juros fizeram</h4>
+            <div class="legend"><span><i style="background:var(--s1)"></i>Saldo bruto</span><span><i style="background:var(--s2)"></i>Você colocou</span></div></div>
+          <div class="chart-wrap" id="a-chart"></div>
+          <details class="table"><summary>Ver como tabela, ano a ano</summary><div class="tbl-wrap" id="a-table"></div></details>
+        </div>
+        <details class="explain">
+          <summary>Como fiz a conta</summary>
+          <ul>
+            <li>Converto a taxa anual em mensal: (1 + taxa)^(1/12) − 1. Dez por cento ao ano dá cerca de 0,80% ao mês, não 0,83%.</li>
+            <li>Cada aporte entra no primeiro dia do mês e rende até o fim do prazo. O saldo bruto é a soma de tudo isso.</li>
+            <li>O IR incide só sobre os juros, aporte por aporte, pelo tempo que cada um ficou aplicado: 22,5% até 6 meses, 20% até 1 ano, 17,5% até 2 anos, 15% acima disso. Por isso os últimos aportes pagam mais.</li>
+            <li>"Em dinheiro de hoje" desconta a inflação do prazo inteiro: é o que o saldo compra, não o número na tela.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Parcelar ou à vista -->
+  <section class="panel" id="parcelar" role="tabpanel" aria-labelledby="tab-parcelar" hidden>
+    <p class="tag-serie">Prova Real · 02</p>
+    <h2>A conta que a loja não faz na sua frente</h2>
+    <p class="lede">"Sem juros" tem um custo escondido no desconto que você deixa de pegar. Aqui o seu dinheiro fica investido e paga as parcelas uma a uma; no fim, ou sobra ou falta.</p>
+    <p class="video-plano">Vídeo planejado, ainda não publicado: “Parcelar em 12 vezes ou pagar à vista com desconto: a conta que a loja não faz”.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>A compra</h3>
+        <div class="fields">
+          <div class="field">
+            <label for="p-preco">Preço parcelado</label>
+            <div class="in"><span class="unit pre">R$</span><input id="p-preco" type="number" inputmode="decimal" min="1" step="50" value="2400"></div>
+          </div>
+          <div class="field">
+            <label for="p-desc">Desconto à vista</label>
+            <div class="in"><input id="p-desc" type="number" inputmode="decimal" min="0" max="90" step="0.5" value="10"><span class="unit">%</span></div>
+          </div>
+          <div class="field">
+            <label for="p-n">Parcelas</label>
+            <div class="in"><input id="p-n" type="number" inputmode="numeric" min="1" max="60" step="1" value="12"><span class="unit">x</span></div>
+          </div>
+          <div class="field">
+            <label for="p-j">Juros do parcelamento</label>
+            <div class="in"><input id="p-j" type="number" inputmode="decimal" min="0" max="20" step="0.1" value="0"><span class="unit">% a.m.</span></div>
+            <span class="hint">Deixe 0 para o famoso "sem juros".</span>
+          </div>
+          <div class="field full">
+            <label for="p-taxa">Quanto o seu dinheiro rende enquanto espera</label>
+            <div class="in"><input id="p-taxa" type="number" inputmode="decimal" min="0" max="100" step="0.1" value="10"><span class="unit">% a.a.</span></div>
+            <span class="hint">Taxa bruta de um CDB ou do Tesouro Selic. Desconto 20% de IR por aqui, o que vale para resgates de até um ano.</span>
+          </div>
+        </div>
+      </div>
+      <div class="results">
+        <div class="hero">
+          <p class="label" id="p-label">Vence</p>
+          <p class="big" id="p-hero">—</p>
+          <p class="verdict" id="p-verdict"></p>
+        </div>
+        <div class="tiles">
+          <div class="tile"><p class="k">Preço à vista</p><p class="v" id="p-cash">—</p></div>
+          <div class="tile"><p class="k">Cada parcela</p><p class="v" id="p-parc">—</p></div>
+          <div class="tile"><p class="k">Juro escondido no "sem juros"</p><p class="v" id="p-rstar">—</p></div>
+          <div class="tile"><p class="k">Seu dinheiro rende, líquido</p><p class="v" id="p-inet">—</p></div>
+        </div>
+        <div class="chart">
+          <div class="chart-head"><h4>O dinheiro guardado pagando as parcelas, mês a mês</h4>
+            <div class="legend"><span><i style="background:var(--s1)"></i>Dinheiro investido</span><span><i style="background:var(--s2)"></i>Parcelas já pagas</span></div></div>
+          <div class="chart-wrap" id="p-chart"></div>
+          <details class="table"><summary>Ver como tabela</summary><div class="tbl-wrap" id="p-table"></div></details>
+        </div>
+        <details class="explain">
+          <summary>Como fiz a conta</summary>
+          <ul>
+            <li>Pagar à vista custa o preço com desconto. Parcelar custa o preço cheio, dividido em parcelas iguais (com juros, uso a tabela Price).</li>
+            <li>Se você parcela, o valor à vista fica investido e, todo mês, sai de lá uma parcela. O que sobrar no fim é o seu ganho por parcelar; se faltar, à vista era melhor.</li>
+            <li>O "juro escondido" é a taxa mensal que iguala as parcelas ao preço à vista. É quanto a loja cobra pelo parcelamento sem juros. Se ela for maior do que o seu dinheiro rende, pague à vista.</li>
+            <li>Isso vale se o dinheiro à vista existe e ficaria investido. Parcelar sem ter o dinheiro é outra conta: é dívida.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 FGC -->
+  <section class="panel" id="fgc" role="tabpanel" aria-labelledby="tab-fgc" hidden>
+    <p class="tag-serie">Prova Real · 03</p>
+    <h2>Quanto do seu dinheiro o FGC devolve</h2>
+    <p class="lede">O Fundo Garantidor de Créditos cobre até R$ 250 mil por CPF em cada instituição, somando o que você aplicou e os juros, com teto de R$ 1 milhão a cada 4 anos. Liste onde o seu dinheiro está e veja o que fica descoberto.</p>
+    <p class="video-plano">Vídeo planejado, ainda não publicado: “O que acontece com o seu CDB se o banco quebrar”.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Onde o dinheiro está</h3>
+        <span class="example">Exemplo, edite com os seus</span>
+        <div class="fgc-list" id="fgc-list"></div>
+        <p style="margin:12px 0 0"><button class="btn ghost" type="button" id="fgc-add">+ Adicionar instituição</button></p>
+      </div>
+      <div class="results">
+        <div class="hero">
+          <p class="label">Coberto pelo FGC</p>
+          <p class="big" id="f-hero">R$ 0</p>
+          <p class="verdict" id="f-verdict"></p>
+        </div>
+        <div class="tiles three">
+          <div class="tile"><p class="k"><span class="dot" style="background:var(--good)"></span>Coberto</p><p class="v" id="f-cov">—</p></div>
+          <div class="tile"><p class="k"><span class="dot" style="background:var(--serious)"></span>Descoberto</p><p class="v" id="f-unc">—</p></div>
+          <div class="tile"><p class="k">Fora do FGC (outra regra)</p><p class="v" id="f-out">—</p></div>
+        </div>
+        <div class="chart">
+          <div class="chart-head"><h4>Por instituição</h4>
+            <div class="legend"><span><i style="background:var(--good)"></i>Coberto</span><span><i style="background:var(--serious)"></i>Descoberto</span></div></div>
+          <div class="fgc-bars" id="f-bars"></div>
+        </div>
+        <details class="explain">
+          <summary>Como fiz a conta, e o que o FGC não cobre</summary>
+          <ul>
+            <li>CDB, RDB, LC, LCI, LCA e poupança: o FGC paga até R$ 250 mil por CPF por instituição. Bancos do mesmo conglomerado contam como um só; some-os numa linha.</li>
+            <li>O teto de R$ 1 milhão vale por CPF a cada 4 anos, somando todas as instituições que quebrarem no período.</li>
+            <li>Tesouro Direto não é FGC: a garantia é do Tesouro Nacional, que é quem emite o título.</li>
+            <li>Ações, FIIs, ETFs e fundos não têm FGC, mas ficam registrados no seu CPF na B3. Se a corretora quebrar, você transfere a custódia; o risco é do ativo, não da corretora.</li>
+            <li>Cripto em exchange não tem garantia nenhuma.</li>
+            <li>O pagamento do FGC não é imediato: entre a quebra e o dinheiro na conta, o valor fica parado e sem render. Regras vigentes em outubro de 2026; confira em <a href="https://www.fgc.org.br" target="_blank" rel="noopener">fgc.org.br</a>.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 Renda passiva -->
+  <section class="panel" id="renda" role="tabpanel" aria-labelledby="tab-renda" hidden>
+    <p class="tag-serie">Prova Real · 04</p>
+    <h2>Quanto tempo leva, começando do zero</h2>
+    <p class="lede">Para receber R$ 1.000 por mês, você precisa de um patrimônio que renda isso. Aqui a meta cresce com a inflação até o dia em que você chega lá, porque R$ 1.000 daqui a 15 anos não compram o que compram hoje.</p>
+    <p class="video-plano">Vídeo planejado, ainda não publicado: “Renda passiva de R$ 1.000 por mês: quanto tempo leva começando do zero”.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Sua meta</h3>
+        <div class="fields">
+          <div class="field">
+            <label for="r-meta">Renda por mês, em dinheiro de hoje</label>
+            <div class="in"><span class="unit pre">R$</span><input id="r-meta" type="number" inputmode="decimal" min="1" step="100" value="1000"></div>
+          </div>
+          <div class="field">
+            <label for="r-mensal">Aporte por mês</label>
+            <div class="in"><span class="unit pre">R$</span><input id="r-mensal" type="number" inputmode="decimal" min="0" step="50" value="500"></div>
+          </div>
+          <div class="field">
+            <label for="r-inicial">Já tem guardado</label>
+            <div class="in"><span class="unit pre">R$</span><input id="r-inicial" type="number" inputmode="decimal" min="0" step="100" value="0"></div>
+          </div>
+          <div class="field">
+            <label for="r-taxa">Rendimento ao ano</label>
+            <div class="in"><input id="r-taxa" type="number" inputmode="decimal" min="0.1" max="100" step="0.1" value="10"><span class="unit">% a.a.</span></div>
+            <span class="hint">Quanto o patrimônio rende e distribui. Reinvestido até chegar lá.</span>
+          </div>
+          <div class="field full">
+            <label for="r-infl">Inflação ao ano</label>
+            <div class="in"><input id="r-infl" type="number" inputmode="decimal" min="0" max="50" step="0.1" value="4"><span class="unit">% a.a.</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="results">
+        <div class="hero">
+          <p class="label">Você chega lá em</p>
+          <p class="big" id="r-hero">—</p>
+          <p class="verdict" id="r-verdict"></p>
+        </div>
+        <div class="tiles">
+          <div class="tile"><p class="k"><span class="dot" style="background:var(--s2)"></span>Patrimônio necessário</p><p class="v" id="r-need">—</p></div>
+          <div class="tile"><p class="k">Em dinheiro de hoje</p><p class="v" id="r-need-hoje">—</p></div>
+          <div class="tile"><p class="k">Você terá colocado</p><p class="v" id="r-aportado">—</p></div>
+          <div class="tile"><p class="k"><span class="dot" style="background:var(--s1)"></span>Juros terão feito</p><p class="v" id="r-juros">—</p></div>
+        </div>
+        <div class="chart">
+          <div class="chart-head"><h4>Seu saldo contra a meta, que sobe com a inflação</h4>
+            <div class="legend"><span><i style="background:var(--s1)"></i>Seu saldo</span><span><i style="background:var(--s2)"></i>Patrimônio necessário</span></div></div>
+          <div class="chart-wrap" id="r-chart"></div>
+          <details class="table"><summary>Ver como tabela, ano a ano</summary><div class="tbl-wrap" id="r-table"></div></details>
+        </div>
+        <div class="card">
+          <h3>E se o aporte fosse outro?</h3>
+          <div class="sens" id="r-sens"></div>
+        </div>
+        <details class="explain">
+          <summary>Como fiz a conta</summary>
+          <ul>
+            <li>Patrimônio necessário = renda mensal × 12 ÷ rendimento anual. Para R$ 1.000 por mês a 10% ao ano, R$ 120 mil, em dinheiro de hoje.</li>
+            <li>A meta sobe com a inflação a cada mês. No mês em que o seu saldo alcança a meta daquele mês, você chegou.</li>
+            <li>Até lá, todo rendimento é reinvestido. Depois, você passa a sacar o rendimento e o patrimônio para de crescer; para a renda seguir a inflação, é preciso reinvestir uma parte, e isso fica para outro vídeo.</li>
+            <li>Uso a mesma taxa para acumular e para distribuir, sem imposto. É uma simplificação: dividendos de FII são isentos, juros de renda fixa pagam IR.</li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <p class="sim-nota">As taxas são genéricas e você as edita; nada aqui indica produto, banco ou ativo específico. Antes de decidir, confira a taxa do dia e as regras na fonte.</p>
+</div>
+</div>
+<section class="lista" id="lista" aria-labelledby="lista-titulo">
+  <div class="wrap lista-grade">
+    <div class="lista-texto">
+      <h2 id="lista-titulo" class="titulo-secao">Receba a planilha de cada vídeo</h2>
+      <p>E o próximo simulador antes de todo mundo. Mando só quando sair conta nova; sem spam, sem “oportunidade imperdível”.</p>
+    </div>
+    <form class="lista-form" data-lista novalidate>
+      <fieldset disabled>
+        <legend class="so-leitor">Cadastro na lista de e-mail</legend>
+        <div class="campo">
+          <label for="lista-nome">Nome</label>
+          <input id="lista-nome" name="nome" type="text" autocomplete="given-name" maxlength="80" placeholder="Como quer ser chamado">
+        </div>
+        <div class="campo">
+          <label for="lista-email">E-mail</label>
+          <input id="lista-email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="160" placeholder="voce@exemplo.com" required aria-describedby="lista-email-erro">
+          <p class="erro-campo" id="lista-email-erro" data-erro-email hidden></p>
+        </div>
+        <p class="consentimento">Ao cadastrar, você aceita receber e-mails do Souza Investe com planilhas e simuladores novos. Sem spam; cancele quando quiser. Seus dados ficam com a gente e com o provedor de e-mail escolhido, só para esse envio. <a href="../privacidade/">Como cuido dos seus dados</a>.</p>
+        <button class="botao botao-tinta" type="submit">Quero receber</button>
+      </fieldset>
+      <p class="mensagem" data-lista-status data-tipo="info" role="status"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><path d="M12 7.5h.01"/></svg><span>A lista ainda não está ligada. A planilha de cada vídeo fica no link da descrição.</span></p>
+    </form>
+  </div>
+</section>
+</main>
+<footer class="rodape">
+  <div class="wrap">
+    <p class="rodape-frase">Souza investe, mas antes faz a conta.</p>
+    <nav class="rodape-menu" aria-label="Rodapé">
+      <ul>
+        <li><a href="../simuladores/">Simuladores</a></li>
+        <li><a href="../videos/">Vídeos</a></li>
+        <li><a href="../blog/">Blog</a></li>
+        <li><a href="../sobre/">Sobre</a></li>
+        <li><a href="../lista/">Lista</a></li>
+        <li><a href="../privacidade/">Privacidade</a></li>
+      </ul>
+    </nav>
+    <ul class="rodape-social" data-social aria-label="Redes do canal" hidden></ul>
+    <p class="rodape-legal">Conteúdo educacional com taxas genéricas. Não é recomendação de investimento. Tabela do IR e regras do FGC conforme vigentes em outubro de 2026.</p>
+    <p class="rodape-marca"><strong>Souza Investe</strong><span class="etiqueta">Prova Real</span></p>
+  </div>
+</footer>
+</body>
+</html>

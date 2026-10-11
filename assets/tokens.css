@@ -1,0 +1,90 @@
+/* Tokens do design system Souza Investe (fonte: tokens.json, versão 1).
+   Este é o único arquivo do site com valor de cor escrito à mão.
+   Todo componente usa as variáveis abaixo. */
+
+:root {
+  /* Cores fixas da marca: valem igual nos dois temas */
+  --brand-petroleo: #0f5c66;
+  --brand-petroleo-claro: #4db6c4;
+  --brand-preto: #0e1113;
+  --brand-branco: #f3f5f4;
+  --brand-grafite: #3a4247;
+
+  /* Interface, tema claro */
+  --ground: #f3f5f4;
+  --surface: #ffffff;
+  --surface-2: #e8ecee;
+  --ink: #0e1113;
+  --ink-muted: #3a4247;
+  --line: #cfd6d9;
+  --petroleo: #0f5c66;
+  --petroleo-ink: #ffffff;
+  --petroleo-soft: #dcebed;
+  --chart-saldo: #2a78d6;
+  --chart-aporte: #eb6834;
+  --shadow-card: 0 1px 2px rgba(14, 17, 19, 0.06), 0 8px 24px rgba(14, 17, 19, 0.06);
+
+  /* Estados: sempre com ícone ou palavra, nunca só a cor */
+  --status-ok: #0ca30c;
+  --status-alerta: #ec835a;
+  --status-erro: #d03b3b;
+
+  /* Tipo */
+  --font-display: "Bricolage Grotesque", "Archivo", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* Espaço */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-8: 48px;
+
+  /* Raio */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  color-scheme: light;
+}
+
+/* Tema escuro pela preferência do sistema, a menos que a pessoa tenha escolhido o claro */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ground: #0e1113;
+    --surface: #161b1e;
+    --surface-2: #1f2629;
+    --ink: #f3f5f4;
+    --ink-muted: #a5aeb3;
+    --line: #2b3338;
+    --petroleo: #4db6c4;
+    --petroleo-ink: #0e1113;
+    --petroleo-soft: #163238;
+    --chart-saldo: #3987e5;
+    --chart-aporte: #d95926;
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
+    color-scheme: dark;
+  }
+}
+
+/* Tema escuro escolhido no botão, e blocos que são sempre pretos (a abertura da home) */
+:root[data-theme="dark"],
+.sempre-escuro {
+  --ground: #0e1113;
+  --surface: #161b1e;
+  --surface-2: #1f2629;
+  --ink: #f3f5f4;
+  --ink-muted: #a5aeb3;
+  --line: #2b3338;
+  --petroleo: #4db6c4;
+  --petroleo-ink: #0e1113;
+  --petroleo-soft: #163238;
+  --chart-saldo: #3987e5;
+  --chart-aporte: #d95926;
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
+  color-scheme: dark;
+}
