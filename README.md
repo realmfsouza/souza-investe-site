@@ -31,7 +31,7 @@ Todos os links são relativos, então o site funciona na raiz de um domínio ou 
 O site não é editado à mão para receber taxa ou vídeo novo. No OS (repositório privado):
 
 ```bash
-python _sistema/publicar_site.py            # busca as taxas no Banco Central e gera tudo
+python _sistema/publicar_site.py            # busca as taxas no Banco Central e no Tesouro Nacional e gera tudo
 python _sistema/publicar_site.py --sem-rede # sem internet: mantém as taxas anteriores
 python _sistema/publicar_site.py --exemplo --site /caminho/de/uma/copia --sem-rede
                                             # três posts inventados numa CÓPIA do site, para ver o modelo
@@ -43,7 +43,7 @@ O script descobre esta pasta pela chave `SITE_DIR` em `_sistema/.env` (sem ela, 
 
 | Arquivo | O que é |
 |---|---|
-| `dados/taxas.json` | Selic meta (SGS 432), CDI anualizado (SGS 4389) e IPCA 12 meses (SGS 13522), com data e fonte |
+| `dados/taxas.json` | Selic meta (SGS 432), CDI anualizado (SGS 4389) e IPCA 12 meses (SGS 13522) do Banco Central, com data e fonte; e, na chave `tesouro`, as taxas de compra do dia do Tesouro Direto (Tesouro Selic, Prefixado e IPCA+, sem cupom, um item por vencimento) lidas do CSV público do Tesouro Transparente, com `data_base`, `fonte` e `url`. A taxa vem como o Tesouro publica: Prefixado é a taxa anual, IPCA+ é a taxa real acima do IPCA e Selic é o acréscimo sobre a Selic |
 | `dados/videos.json` | Um item por vídeo publicado: número, título, `video_id`, data, simulador e três linhas da conta |
 | `blog/<slug>/index.html` | Um post por vídeo, a partir de `modelos/post.html`: trilha, série, tempo de leitura, linha-fina, compartilhar, player que só carrega o YouTube no clique, sumário, a conta com a caixa de taxas, "Resumindo", relacionados e o `og:image` com a capa do vídeo |
 | `blog/index.html` | A lista do blog, a partir de `modelos/blog.html`: destaque do último post, filtro por conta (só com duas contas ou mais), grade de cards, as quatro contas, os últimos vídeos e o autor. Com nenhum vídeo, o estado "Primeiro texto em breve" |
@@ -51,7 +51,7 @@ O script descobre esta pasta pela chave `SITE_DIR` em `_sistema/.env` (sem ela, 
 
 Do OS só saem os campos do frontmatter do roteiro, o `tema` da ideia ligada a ele, a seção "Descrição do vídeo" e o `conta.md`. Roteiro completo, radar, ideias e decisões ficam no OS. O vídeo liga ao simulador pelo campo opcional `simulador:` no frontmatter do roteiro (`aporte`, `parcelar`, `fgc` ou `renda`).
 
-A página `/simuladores/` lê `dados/taxas.json` sem travar a tela: os simuladores desenham com 10% e 4% e trocam para o CDI e o IPCA do arquivo quando ele chega. Se o arquivo faltar, ficam os valores de exemplo e o texto "10% é só um exemplo".
+A página `/simuladores/` lê `dados/taxas.json` sem travar a tela: os simuladores desenham com 10% e 4% e trocam para o CDI e o IPCA do arquivo quando ele chega. Com a chave `tesouro`, cada simulador mostra o seletor "Taxa de referência": CDI do dia ou um título do Tesouro Direto, com fonte e data na dica (para o Tesouro Selic o site soma a Selic meta ao acréscimo do título; para o IPCA+ compõe a taxa real com o IPCA dos últimos 12 meses e avisa que é referência, não previsão). Sem a chave, o seletor fica escondido e tudo funciona como antes. Se o arquivo faltar, ficam os valores de exemplo e o texto "10% é só um exemplo". Nenhum nome de banco ou corretora: Tesouro é título público e conceito.
 
 ## Ligar a lista de e-mail
 
