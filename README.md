@@ -14,13 +14,17 @@ python -m http.server 8765
 
 Abra http://localhost:8765/. Use um servidor local, não o arquivo direto: os simuladores leem `dados/taxas.json` com `fetch`, que o navegador bloqueia em `file://`.
 
-## Publicar no GitHub Pages
+## Publicar na Cloudflare Pages
 
-1. Crie o repositório no GitHub e envie este conteúdo para a branch `main`.
-2. No repositório: Settings, Pages, Build and deployment, Source "Deploy from a branch", branch `main`, pasta `/ (root)`.
-3. O endereço aparece na mesma tela, em geral `https://<usuario>.github.io/<repositorio>/`.
+O código fica em um repositório privado no GitHub (`realmfsouza/souza-investe-site`). Quem serve o site é a Cloudflare Pages, que publica de repositório privado sem custo, com HTTPS e domínio próprio.
 
-Todos os links são relativos, então o site funciona na raiz de um domínio ou numa subpasta do GitHub Pages sem mudar nada. O arquivo `.nojekyll` impede o GitHub de processar o site com Jekyll.
+1. Envie este conteúdo para a branch `main` do repositório (`git push`).
+2. Em https://dash.cloudflare.com, "Workers & Pages", "Create", aba "Pages", "Connect to Git". Autorize o app da Cloudflare no GitHub só para este repositório.
+3. Configuração do projeto: framework "None", comando de build vazio, diretório de saída `/` (a raiz). Salvar e implantar.
+4. O site sobe em `https://<projeto>.pages.dev`. Cada `git push` na `main` publica de novo em menos de um minuto.
+5. Domínio próprio: "Custom domains", "Set up a custom domain", digite o domínio e siga as instruções de DNS (um CNAME apontando para o endereço `.pages.dev`). O certificado HTTPS é automático.
+
+Todos os links são relativos, então o site funciona na raiz de um domínio ou numa subpasta sem mudar nada. O arquivo `.nojekyll` fica por compatibilidade, caso um dia o site volte para o GitHub Pages.
 
 ## Como o OS atualiza o site
 
@@ -89,11 +93,12 @@ Cabeçalho, menu, rodapé e o bloco da lista se repetem em cada página, porque 
 - Sem analytics e sem cookie. O navegador guarda só a escolha de tema (`si-tema`) e a última aba de simulador (`si-tab`) no `localStorage`.
 - O `og.png` foi gerado com o Chrome em modo headless a partir do mesmo desenho do `og.svg` (o Pillow não estava instalado). Para refazer, abra um HTML 1200x630 com o desenho e rode `chrome --headless --window-size=1200,630 --screenshot=og.png`.
 - O ícone da aba ficou vazio de propósito: a marca não tem logotipo.
-- As capturas de verificação ficam em `docs/capturas/`, fora do git (`.gitignore`), para não pesar o repositório nem ser publicadas pelo GitHub Pages.
+- As capturas de verificação ficam em `docs/capturas/`, fora do git (`.gitignore`), para não pesar o repositório nem ser publicadas.
 
 ## Fora do MVP
 
-- Domínio próprio: o site roda no endereço do GitHub Pages. Com domínio, preencha `SITE_URL` no `.env` do OS e configure o domínio em Settings, Pages.
+- Domínio próprio: decidido (um `.com.br` pelo registro.br, cerca de R$ 40 por ano), ainda não registrado. Até lá o site roda no endereço `.pages.dev`. Com o domínio no ar, preencha `SITE_URL` no `.env` do OS e configure o domínio na Cloudflare Pages.
+- Redirecionamentos `/s/` no servidor: a Cloudflare Pages aceita um arquivo `_redirects` com 301 de verdade. Fica para depois de o site estar no ar, com teste de que a query string (UTM) sobrevive; até lá os redirecionamentos no cliente continuam valendo.
 - Analytics: nenhum, por decisão do MVP.
 - Provedor de e-mail: ainda não escolhido; a lista fica desligada até `listEndpoint` ser preenchido.
 - Lighthouse: não rodei auditoria formal de desempenho. A verificação desta versão foi manual, em navegador, a 360, 400, 768 e 1200px, nos dois temas.
