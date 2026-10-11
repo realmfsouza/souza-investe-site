@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /modelos/
+Disallow: /s/
+
+Sitemap: https://souza-investe-site.realmfsouza.workers.dev/sitemap.xml
