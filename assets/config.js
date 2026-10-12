@@ -11,5 +11,5 @@ var CONFIG = {
   listEndpoint: '',
   youtubeUrl: 'https://www.youtube.com/@souzainvesteoficial',
   instagramUrl: '',
-  fotoHero: ''
+  fotoHero: 'assets/matheus.png'
 };

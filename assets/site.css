@@ -1966,8 +1966,13 @@ html {
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   }
 
+}
+
+/* Com a foto: três colunas, só quando cabem. Abaixo de 1100px fica a conta sozinha. */
+@media (min-width: 1100px) {
   [data-abertura].tem-rosto .abertura-grade {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr) minmax(220px, 300px);
+    grid-template-columns: minmax(0, 1fr) minmax(380px, 0.9fr) minmax(200px, 280px);
+    gap: var(--space-6);
     align-items: end;
     padding-bottom: 0;
   }
@@ -1977,10 +1982,22 @@ html {
     padding-bottom: calc(var(--space-8) + var(--space-6));
   }
 
+  [data-abertura].tem-rosto .abertura h1 {
+    font-size: clamp(2.5rem, 1rem + 4.2vw, 4.25rem);
+  }
+
+  [data-abertura].tem-rosto .conta-linhas .conta-total dd {
+    font-size: clamp(2.25rem, 1.5rem + 2vw, 3rem);
+  }
+
+  [data-abertura].tem-rosto .conta-linhas .conta-total dt {
+    white-space: nowrap;
+  }
+
   [data-abertura].tem-rosto .abertura-rosto {
     display: block;
     width: 100%;
-    max-height: 520px;
+    max-height: 560px;
     object-fit: contain;
     object-position: bottom;
     justify-self: end;
