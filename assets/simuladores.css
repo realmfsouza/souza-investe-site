@@ -81,21 +81,10 @@
   gap: var(--space-2);
 }
 
-.tab .n {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--ink-muted);
-}
-
 .tab[aria-selected="true"] {
   background: var(--petroleo);
   color: var(--petroleo-ink);
   border-color: var(--petroleo);
-}
-
-.tab[aria-selected="true"] .n {
-  color: inherit;
-  opacity: 0.85;
 }
 
 .tab:focus-visible,
@@ -111,16 +100,6 @@
 .panel {
   padding-block: var(--space-5) var(--space-8);
   scroll-margin-top: 72px;
-}
-
-.tag-serie {
-  font-family: var(--font-mono);
-  font-weight: 500;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-muted);
-  margin: 0 0 var(--space-2);
 }
 
 .panel h2 {
@@ -315,18 +294,19 @@
   margin-bottom: var(--space-3);
 }
 
-/* Results */
+/* Results: uma superfície só, com a conta em linhas de extrato */
 .results {
   display: grid;
-  gap: var(--space-3);
+  gap: var(--space-4);
   min-width: 0;
-}
-
-.hero {
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  padding: var(--space-4);
+  padding: var(--space-5);
+}
+
+.hero {
+  padding: 0;
 }
 
 .hero .label {
@@ -337,11 +317,11 @@
 }
 
 .hero .big {
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: clamp(1.9rem, 5vw, 2.75rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 1.6rem + 3.4vw, 4.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
   margin: 0;
   font-variant-numeric: tabular-nums;
   overflow-wrap: anywhere;
@@ -355,32 +335,25 @@
 
 .tiles {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-2);
-}
-
-@media (min-width: 560px) {
-  .tiles {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-
-  .tiles.three {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--ink);
 }
 
 .tile {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  padding: var(--space-3);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--line);
   min-width: 0;
 }
 
 .tile .k {
-  font-size: 0.74rem;
+  font-size: 0.9375rem;
   color: var(--ink-muted);
-  margin: 0 0 var(--space-1);
+  margin: 0;
   display: flex;
   align-items: center;
   gap: var(--space-2);
@@ -389,10 +362,11 @@
 .tile .v {
   font-family: var(--font-mono);
   font-weight: 600;
-  font-size: 1.08rem;
+  font-size: 1.125rem;
   margin: 0;
   font-variant-numeric: tabular-nums;
-  overflow-wrap: anywhere;
+  text-align: right;
+  white-space: nowrap;
 }
 
 .dot {
@@ -405,10 +379,7 @@
 
 /* Chart */
 .chart {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: var(--space-3) var(--space-3) var(--space-2);
+  padding: var(--space-2) 0 0;
   min-width: 0;
 }
 
@@ -563,9 +534,16 @@ details.table summary {
 
 /* Explain */
 details.explain {
-  background: var(--surface-2);
-  border-radius: var(--radius-md);
-  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--line);
+  padding: var(--space-4) 0 0;
+}
+
+.results .card {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  padding: var(--space-4) 0 0;
 }
 
 details.explain summary {

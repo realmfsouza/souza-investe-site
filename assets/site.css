@@ -319,17 +319,6 @@ h3 {
   transform: none;
 }
 
-.seta {
-  transition: transform 160ms var(--ease-out);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  a:hover > .seta,
-  .botao:hover > .seta {
-    transform: translateX(3px);
-  }
-}
-
 /* ---------- Cabeçalho ---------- */
 
 .topo {
@@ -550,10 +539,10 @@ h3 {
 
 .abertura h1 {
   font-weight: 800;
-  font-size: clamp(2.125rem, 1.15rem + 4.4vw, 4rem);
-  line-height: 1.02;
-  letter-spacing: -0.02em;
-  max-width: 13em;
+  font-size: clamp(2.5rem, 1.3rem + 5.2vw, 5rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  max-width: 11em;
 }
 
 .abertura-sub {
@@ -950,6 +939,29 @@ details.conta-resumo li + li {
   line-height: 1;
 }
 
+.foto-lugar img {
+  display: none;
+}
+
+.foto-lugar.tem-foto {
+  padding: 0;
+  background: var(--brand-preto);
+  overflow: hidden;
+}
+
+.foto-lugar.tem-foto > span,
+.foto-lugar.tem-foto > strong {
+  display: none;
+}
+
+.foto-lugar.tem-foto img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
 .historia p {
   font-size: 1.125rem;
   max-width: 58ch;
@@ -1014,7 +1026,7 @@ details.conta-resumo li + li {
 
 .lista-sims a {
   display: grid;
-  grid-template-columns: 2.5rem minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: baseline;
   gap: var(--space-3);
   padding-block: var(--space-3);
@@ -1442,6 +1454,11 @@ details.conta-resumo li + li {
   background: var(--surface);
 }
 
+.sumario-titulo {
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
 .sumario ol {
   list-style: none;
   margin: var(--space-3) 0 0;
@@ -1714,33 +1731,36 @@ details.conta-resumo li + li {
 
 .posts-grade {
   display: grid;
-  gap: var(--space-4);
+  gap: 0;
   grid-template-columns: minmax(0, 1fr);
-  margin-top: var(--space-5);
-}
-
-@media (min-width: 640px) {
-  .posts-grade {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 960px) {
-  .posts-grade {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
+  margin-top: var(--space-6);
+  border-top: 2px solid var(--ink);
 }
 
 .post-cartao {
-  padding: 0;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  border-radius: 0;
+  padding: var(--space-5) 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+}
+
+@media (min-width: 640px) {
+  .post-cartao {
+    grid-template-columns: 200px minmax(0, 1fr);
+    gap: var(--space-5);
+    align-items: start;
+  }
 }
 
 .post-cartao-capa {
   display: block;
   background: var(--surface-2);
+  border-radius: var(--radius-md);
+  overflow: hidden;
 }
 
 .post-cartao-capa img {
@@ -1750,10 +1770,10 @@ details.conta-resumo li + li {
 }
 
 .post-cartao-corpo {
-  padding: var(--space-4) var(--space-5) var(--space-5);
   display: grid;
   gap: var(--space-2);
   align-content: start;
+  max-width: 62ch;
 }
 
 .post-cartao h2 {
@@ -1781,46 +1801,43 @@ details.conta-resumo li + li {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  gap: var(--space-3);
-  grid-template-columns: minmax(0, 1fr);
+  border-top: 2px solid var(--ink);
 }
 
-@media (min-width: 640px) {
-  .sims-compacto {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1024px) {
-  .sims-compacto {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
+.sims-compacto li {
+  border-bottom: 1px solid var(--line);
 }
 
 .sims-compacto a {
   display: grid;
-  gap: var(--space-2);
-  height: 100%;
-  padding: var(--space-4) var(--space-5);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  background: var(--surface);
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-1) var(--space-6);
+  padding-block: var(--space-4);
   text-decoration: none;
-  transition: border-color 160ms ease;
+  min-height: 48px;
+}
+
+@media (min-width: 768px) {
+  .sims-compacto a {
+    grid-template-columns: minmax(200px, 0.6fr) minmax(0, 1.4fr);
+    align-items: baseline;
+  }
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .sims-compacto a:hover {
-    border-color: var(--ink-muted);
+  .sims-compacto a:hover strong {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
   }
 }
 
 .sims-compacto strong {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.125rem;
-  line-height: 1.2;
+  font-weight: 800;
+  font-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .sims-compacto-texto {
@@ -1865,6 +1882,193 @@ details.conta-resumo li + li {
 
 .yt-canal {
   margin-top: var(--space-5);
+}
+
+/* ---------- Refino: a conta como protagonista ---------- */
+
+/* Linha de dado (série, número, data, leitura): mono, sem caixa alta.
+   A etiqueta em caixa alta fica só para a tag da marca, Prova Real. */
+.meta {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Superfícies do navegador, no tom da página */
+html {
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--ground);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--line);
+  border: 2px solid var(--ground);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ink-muted);
+}
+
+/* Abertura: o rosto e a conta que roda */
+.abertura-grade {
+  position: relative;
+}
+
+.abertura-texto {
+  min-width: 0;
+}
+
+.conta-aberta {
+  background: transparent;
+  border: 0;
+  border-top: 2px solid var(--ink);
+  border-radius: 0;
+  padding: var(--space-4) 0 0;
+  max-width: 460px;
+}
+
+.conta-titulo {
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.conta-linhas .conta-total dd {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 1.8rem + 2.6vw, 3.75rem);
+  letter-spacing: -0.03em;
+}
+
+.conta-linhas .conta-falta dd {
+  color: var(--petroleo);
+  font-size: 1.5rem;
+  word-spacing: -0.35em;
+}
+
+.abertura-rosto {
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .abertura-grade {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  }
+
+  [data-abertura].tem-rosto .abertura-grade {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr) minmax(220px, 300px);
+    align-items: end;
+    padding-bottom: 0;
+  }
+
+  [data-abertura].tem-rosto .abertura-texto,
+  [data-abertura].tem-rosto .conta-aberta {
+    padding-bottom: calc(var(--space-8) + var(--space-6));
+  }
+
+  [data-abertura].tem-rosto .abertura-rosto {
+    display: block;
+    width: 100%;
+    max-height: 520px;
+    object-fit: contain;
+    object-position: bottom;
+    justify-self: end;
+    align-self: end;
+  }
+}
+
+/* Os quatro simuladores: um extrato, não quatro cards */
+.contas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 2px solid var(--ink);
+}
+
+.conta-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+  padding-block: var(--space-6);
+  border-bottom: 1px solid var(--line);
+}
+
+.conta-numero {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 1.5rem + 3vw, 3.75rem);
+  white-space: nowrap;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.conta-corpo {
+  min-width: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.conta-corpo h3 {
+  font-size: clamp(1.25rem, 1.1rem + 0.8vw, 1.625rem);
+  line-height: 1.2;
+  max-width: 28ch;
+}
+
+.conta-corpo h3 a {
+  text-decoration: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .conta-corpo h3 a:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+}
+
+.conta-resumo-texto {
+  max-width: 58ch;
+  color: var(--ink-muted);
+}
+
+.conta-corpo details.conta-resumo {
+  border-top: 0;
+  padding-top: 0;
+  max-width: 58ch;
+}
+
+.conta-abrir {
+  align-self: start;
+}
+
+@media (min-width: 768px) {
+  .conta-item {
+    grid-template-columns: minmax(220px, 1fr) minmax(0, 2fr) auto;
+    gap: var(--space-6);
+    align-items: start;
+  }
+
+  .conta-numero {
+    position: sticky;
+    top: var(--space-5);
+  }
+}
+
+/* Primeiro vídeo em breve: um bloco, não um card */
+.em-breve {
+  border-top: 2px solid var(--ink);
+  padding-top: var(--space-4);
 }
 
 /* ---------- Movimento ---------- */

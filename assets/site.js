@@ -163,7 +163,7 @@
           h += '<article class="cartao video-cartao">' +
             '<a href="' + yt + '" rel="noopener"><img class="video-capa" src="' + capa + '" alt="Capa do vídeo: ' + esc(v.titulo) + '" width="480" height="360" loading="lazy"></a>' +
             '<div class="video-corpo">' +
-            '<p class="etiqueta">Prova Real' + (v.numero ? ' · ' + esc(v.numero) : '') + (v.publicado_em ? ' · ' + esc(dataBR(v.publicado_em)) : '') + '</p>' +
+            '<p class="meta">Prova Real' + (v.numero ? ' · ' + esc(v.numero) : '') + (v.publicado_em ? ' · ' + esc(dataBR(v.publicado_em)) : '') + '</p>' +
             '<h2>' + esc(v.titulo) + '</h2>' +
             (linhas.length ? '<div><p class="legenda">Como fiz a conta</p><ul class="video-conta">' + linhas.map(function (l) { return '<li>' + esc(l) + '</li>'; }).join('') + '</ul></div>' : '') +
             '<p class="video-links">' +
@@ -250,6 +250,50 @@
   if (canal && urlSegura(cfg.youtubeUrl)) {
     canal.href = cfg.youtubeUrl.trim();
     canal.hidden = false;
+  }
+
+  /* ---------- Abertura: a conta roda uma vez ao carregar ---------- */
+  var conta = document.querySelector('[data-conta]');
+  var semMovimento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (conta && !semMovimento && window.requestAnimationFrame) {
+    var valores = Array.prototype.slice.call(conta.querySelectorAll('[data-conta-valor]'));
+    var pergunta = conta.querySelector('[data-conta-pergunta]');
+    var duracao = 1100;
+    var inicio = null;
+    valores.forEach(function (el) { el.textContent = (el.getAttribute('data-conta-prefixo') || '') + '0'; });
+    if (pergunta) pergunta.style.opacity = '0';
+    function quadro(agora) {
+      if (inicio === null) inicio = agora;
+      var t = Math.min(1, (agora - inicio) / duracao);
+      var e = 1 - Math.pow(2, -10 * t);
+      valores.forEach(function (el) {
+        var alvo = Number(el.getAttribute('data-conta-valor')) || 0;
+        var v = Math.round(alvo * e);
+        el.textContent = (el.getAttribute('data-conta-prefixo') || '') + v.toLocaleString('pt-BR');
+      });
+      if (t < 1) {
+        requestAnimationFrame(quadro);
+      } else if (pergunta) {
+        pergunta.style.transition = 'opacity 420ms cubic-bezier(0.23, 1, 0.32, 1)';
+        pergunta.style.opacity = '1';
+      }
+    }
+    requestAnimationFrame(quadro);
+  }
+
+  /* ---------- Rosto do Matheus: só com fotoHero em config.js ---------- */
+  var rostos = document.querySelectorAll('[data-rosto]');
+  if (rostos.length && typeof cfg.fotoHero === 'string' && /^[\w./-]+\.(png|webp)$/i.test(cfg.fotoHero.trim())) {
+    Array.prototype.forEach.call(rostos, function (img) {
+      var raiz = img.getAttribute('data-raiz') || '';
+      img.src = raiz + cfg.fotoHero.trim();
+      img.alt = 'Matheus Souza';
+      img.hidden = false;
+      var lugar = img.closest('[data-foto-lugar]');
+      if (lugar) lugar.classList.add('tem-foto');
+      var abertura = img.closest('[data-abertura]');
+      if (abertura) abertura.classList.add('tem-rosto');
+    });
   }
 
   function dataBR(iso) {

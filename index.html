@@ -44,26 +44,27 @@
   </div>
 </header>
 <main id="conteudo">
-<section class="abertura sempre-escuro" aria-labelledby="abertura-titulo">
+<section class="abertura sempre-escuro" aria-labelledby="abertura-titulo" data-abertura>
   <div class="wrap abertura-grade">
-    <div>
+    <div class="abertura-texto">
       <h1 id="abertura-titulo">Souza investe, mas antes faz a conta.</h1>
       <p class="abertura-sub">Simuladores e planilhas de cada vídeo da série Prova Real. Mude os números e veja o que acontece com o seu dinheiro.</p>
       <div class="abertura-acoes">
-        <a class="botao botao-principal" href="simuladores/">Faça a conta<svg class="seta" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a>
+        <a class="botao botao-tinta" href="simuladores/">Faça a conta</a>
         <a class="botao botao-contorno" href="#lista">Receba a planilha</a>
       </div>
     </div>
-    <figure class="conta-aberta" aria-labelledby="conta-legenda">
-      <figcaption id="conta-legenda" class="etiqueta">A conta aberta · 10 anos</figcaption>
+    <figure class="conta-aberta" aria-labelledby="conta-legenda" data-conta>
+      <figcaption id="conta-legenda" class="conta-titulo">A conta aberta, 10 anos</figcaption>
       <dl class="conta-linhas">
-        <div><dt>Aporte por mês</dt><dd class="dinheiro">R$ 50</dd></div>
-        <div><dt>Meses em 10 anos</dt><dd class="dinheiro">× 120</dd></div>
-        <div class="conta-total"><dt>Saiu do seu bolso</dt><dd class="dinheiro">R$ 6.000</dd></div>
-        <div class="conta-falta"><dt>Juros</dt><dd class="dinheiro">+ ?</dd></div>
+        <div><dt>Aporte por mês</dt><dd class="dinheiro"><span data-conta-valor="50" data-conta-prefixo="R$ ">R$ 50</span></dd></div>
+        <div><dt>Meses em 10 anos</dt><dd class="dinheiro"><span data-conta-valor="120" data-conta-prefixo="× ">× 120</span></dd></div>
+        <div class="conta-total"><dt>Saiu do seu bolso</dt><dd class="dinheiro"><span data-conta-valor="6000" data-conta-prefixo="R$ ">R$ 6.000</span></dd></div>
+        <div class="conta-falta"><dt>Juros</dt><dd class="dinheiro"><span data-conta-pergunta>+ ?</span></dd></div>
       </dl>
       <p class="conta-nota">Os juros dependem da taxa, do prazo e do imposto. É essa parte que o simulador mostra, com a taxa do dia.</p>
     </figure>
+    <img class="abertura-rosto" data-rosto data-raiz="" alt="" width="640" height="800" decoding="async" hidden>
   </div>
 </section>
 
@@ -73,86 +74,78 @@
       <h2 id="sims-titulo" class="titulo-secao">Os quatro simuladores</h2>
       <p>Cada um nasceu de um vídeo planejado da série. Os vídeos ainda não saíram; as contas já funcionam.</p>
     </div>
-    <div class="sims">
-      <article class="cartao sim-cartao" aria-labelledby="sim-aporte">
-        <div class="sim-cartao-topo">
-          <p class="etiqueta">Prova Real · 01</p>
-          <span class="estado"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Vídeo planejado</span>
+    <ol class="contas">
+      <li class="conta-item">
+        <p class="conta-numero">R$ 50</p>
+        <div class="conta-corpo">
+          <h3 id="sim-aporte"><a href="simuladores/#aporte">Com R$ 50 por mês dá para investir? A conta honesta</a></h3>
+          <p class="conta-resumo-texto">Aporte no começo de cada mês, juros compostos mês a mês e imposto de renda calculado aporte por aporte, pela tabela regressiva. Sem mágica.</p>
+          <details class="conta-resumo">
+            <summary>Como fiz a conta</summary>
+            <ul>
+              <li>Converto a taxa anual em mensal: (1 + taxa)^(1/12) − 1. Dez por cento ao ano dá cerca de 0,80% ao mês, não 0,83%.</li>
+              <li>Cada aporte entra no primeiro dia do mês e rende até o fim do prazo. O saldo bruto é a soma de tudo isso.</li>
+              <li>O IR incide só sobre os juros, aporte por aporte, pelo tempo que cada um ficou aplicado: 22,5% até 6 meses, 20% até 1 ano, 17,5% até 2 anos, 15% acima disso. Por isso os últimos aportes pagam mais.</li>
+              <li>"Em dinheiro de hoje" desconta a inflação do prazo inteiro: é o que o saldo compra, não o número na tela.</li>
+            </ul>
+          </details>
         </div>
-        <p class="sim-numero">R$ 50</p>
-        <h3 id="sim-aporte">Com R$ 50 por mês dá para investir? A conta honesta</h3>
-        <p class="sim-resumo">Aporte no começo de cada mês, juros compostos mês a mês e imposto de renda calculado aporte por aporte, pela tabela regressiva. Sem mágica.</p>
-        <details class="conta-resumo">
-          <summary>Como fiz a conta</summary>
-          <ul>
-            <li>Converto a taxa anual em mensal: (1 + taxa)^(1/12) − 1. Dez por cento ao ano dá cerca de 0,80% ao mês, não 0,83%.</li>
-            <li>Cada aporte entra no primeiro dia do mês e rende até o fim do prazo. O saldo bruto é a soma de tudo isso.</li>
-            <li>O IR incide só sobre os juros, aporte por aporte, pelo tempo que cada um ficou aplicado: 22,5% até 6 meses, 20% até 1 ano, 17,5% até 2 anos, 15% acima disso. Por isso os últimos aportes pagam mais.</li>
-            <li>"Em dinheiro de hoje" desconta a inflação do prazo inteiro: é o que o saldo compra, não o número na tela.</li>
-          </ul>
-        </details>
-        <p class="sim-abrir"><a class="link-forte" href="simuladores/#aporte">Abrir o simulador<svg class="seta" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></p>
-      </article>
-      <article class="cartao sim-cartao" aria-labelledby="sim-parcelar">
-        <div class="sim-cartao-topo">
-          <p class="etiqueta">Prova Real · 02</p>
-          <span class="estado"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Vídeo planejado</span>
+        <p class="conta-abrir"><a class="link-forte" href="simuladores/#aporte">Abrir o simulador<svg class="seta" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></p>
+      </li>
+      <li class="conta-item">
+        <p class="conta-numero">12x</p>
+        <div class="conta-corpo">
+          <h3 id="sim-parcelar"><a href="simuladores/#parcelar">Parcelar em 12 vezes ou pagar à vista com desconto: a conta que a loja não faz</a></h3>
+          <p class="conta-resumo-texto">"Sem juros" tem um custo escondido no desconto que você deixa de pegar. Aqui o seu dinheiro fica investido e paga as parcelas uma a uma; no fim, ou sobra ou falta.</p>
+          <details class="conta-resumo">
+            <summary>Como fiz a conta</summary>
+            <ul>
+              <li>Pagar à vista custa o preço com desconto. Parcelar custa o preço cheio, dividido em parcelas iguais (com juros, uso a tabela Price).</li>
+              <li>Se você parcela, o valor à vista fica investido e, todo mês, sai de lá uma parcela. O que sobrar no fim é o seu ganho por parcelar; se faltar, à vista era melhor.</li>
+              <li>O "juro escondido" é a taxa mensal que iguala as parcelas ao preço à vista. É quanto a loja cobra pelo parcelamento sem juros. Se ela for maior do que o seu dinheiro rende, pague à vista.</li>
+              <li>Isso vale se o dinheiro à vista existe e ficaria investido. Parcelar sem ter o dinheiro é outra conta: é dívida.</li>
+            </ul>
+          </details>
         </div>
-        <p class="sim-numero">12x</p>
-        <h3 id="sim-parcelar">Parcelar em 12 vezes ou pagar à vista com desconto: a conta que a loja não faz</h3>
-        <p class="sim-resumo">"Sem juros" tem um custo escondido no desconto que você deixa de pegar. Aqui o seu dinheiro fica investido e paga as parcelas uma a uma; no fim, ou sobra ou falta.</p>
-        <details class="conta-resumo">
-          <summary>Como fiz a conta</summary>
-          <ul>
-            <li>Pagar à vista custa o preço com desconto. Parcelar custa o preço cheio, dividido em parcelas iguais (com juros, uso a tabela Price).</li>
-            <li>Se você parcela, o valor à vista fica investido e, todo mês, sai de lá uma parcela. O que sobrar no fim é o seu ganho por parcelar; se faltar, à vista era melhor.</li>
-            <li>O "juro escondido" é a taxa mensal que iguala as parcelas ao preço à vista. É quanto a loja cobra pelo parcelamento sem juros. Se ela for maior do que o seu dinheiro rende, pague à vista.</li>
-            <li>Isso vale se o dinheiro à vista existe e ficaria investido. Parcelar sem ter o dinheiro é outra conta: é dívida.</li>
-          </ul>
-        </details>
-        <p class="sim-abrir"><a class="link-forte" href="simuladores/#parcelar">Abrir o simulador<svg class="seta" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></p>
-      </article>
-      <article class="cartao sim-cartao" aria-labelledby="sim-fgc">
-        <div class="sim-cartao-topo">
-          <p class="etiqueta">Prova Real · 03</p>
-          <span class="estado"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Vídeo planejado</span>
+        <p class="conta-abrir"><a class="link-forte" href="simuladores/#parcelar">Abrir o simulador<svg class="seta" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></p>
+      </li>
+      <li class="conta-item">
+        <p class="conta-numero">R$ 250 mil</p>
+        <div class="conta-corpo">
+          <h3 id="sim-fgc"><a href="simuladores/#fgc">O que acontece com o seu CDB se o banco quebrar</a></h3>
+          <p class="conta-resumo-texto">O Fundo Garantidor de Créditos cobre até R$ 250 mil por CPF em cada instituição. Liste onde o seu dinheiro está e veja o que fica descoberto.</p>
+          <details class="conta-resumo">
+            <summary>Como fiz a conta</summary>
+            <ul>
+              <li>CDB, RDB, LC, LCI, LCA e poupança: o FGC paga até R$ 250 mil por CPF por instituição. Bancos do mesmo conglomerado contam como um só; some-os numa linha.</li>
+              <li>O teto de R$ 1 milhão vale por CPF a cada 4 anos, somando todas as instituições que quebrarem no período.</li>
+              <li>Tesouro Direto não é FGC: a garantia é do Tesouro Nacional, que é quem emite o título.</li>
+              <li>Ações, FIIs, ETFs e fundos não têm FGC, mas ficam registrados no seu CPF na B3. Se a corretora quebrar, você transfere a custódia; o risco é do ativo, não da corretora.</li>
+              <li>Cripto em exchange não tem garantia nenhuma.</li>
+              <li>O pagamento do FGC não é imediato: entre a quebra e o dinheiro na conta, o valor fica parado e sem render.</li>
+            </ul>
+          </details>
         </div>
-        <p class="sim-numero">R$ 250 mil</p>
-        <h3 id="sim-fgc">O que acontece com o seu CDB se o banco quebrar</h3>
-        <p class="sim-resumo">O Fundo Garantidor de Créditos cobre até R$ 250 mil por CPF em cada instituição. Liste onde o seu dinheiro está e veja o que fica descoberto.</p>
-        <details class="conta-resumo">
-          <summary>Como fiz a conta</summary>
-          <ul>
-            <li>CDB, RDB, LC, LCI, LCA e poupança: o FGC paga até R$ 250 mil por CPF por instituição. Bancos do mesmo conglomerado contam como um só; some-os numa linha.</li>
-            <li>O teto de R$ 1 milhão vale por CPF a cada 4 anos, somando todas as instituições que quebrarem no período.</li>
-            <li>Tesouro Direto não é FGC: a garantia é do Tesouro Nacional, que é quem emite o título.</li>
-            <li>Ações, FIIs, ETFs e fundos não têm FGC, mas ficam registrados no seu CPF na B3. Se a corretora quebrar, você transfere a custódia; o risco é do ativo, não da corretora.</li>
-            <li>Cripto em exchange não tem garantia nenhuma.</li>
-            <li>O pagamento do FGC não é imediato: entre a quebra e o dinheiro na conta, o valor fica parado e sem render.</li>
-          </ul>
-        </details>
-        <p class="sim-abrir"><a class="link-forte" href="simuladores/#fgc">Abrir o simulador<svg class="seta" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></p>
-      </article>
-      <article class="cartao sim-cartao" aria-labelledby="sim-renda">
-        <div class="sim-cartao-topo">
-          <p class="etiqueta">Prova Real · 04</p>
-          <span class="estado"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Vídeo planejado</span>
+        <p class="conta-abrir"><a class="link-forte" href="simuladores/#fgc">Abrir o simulador<svg class="seta" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></p>
+      </li>
+      <li class="conta-item">
+        <p class="conta-numero">R$ 1.000</p>
+        <div class="conta-corpo">
+          <h3 id="sim-renda"><a href="simuladores/#renda">Renda passiva de R$ 1.000 por mês: quanto tempo leva começando do zero</a></h3>
+          <p class="conta-resumo-texto">Para receber R$ 1.000 por mês, você precisa de um patrimônio que renda isso. A meta cresce com a inflação até o dia em que você chega lá.</p>
+          <details class="conta-resumo">
+            <summary>Como fiz a conta</summary>
+            <ul>
+              <li>Patrimônio necessário = renda mensal × 12 ÷ rendimento anual. Para R$ 1.000 por mês a 10% ao ano, R$ 120 mil, em dinheiro de hoje.</li>
+              <li>A meta sobe com a inflação a cada mês. No mês em que o seu saldo alcança a meta daquele mês, você chegou.</li>
+              <li>Até lá, todo rendimento é reinvestido. Depois, você passa a sacar o rendimento e o patrimônio para de crescer; para a renda seguir a inflação, é preciso reinvestir uma parte, e isso fica para outro vídeo.</li>
+              <li>Uso a mesma taxa para acumular e para distribuir, sem imposto. É uma simplificação: dividendos de FII são isentos, juros de renda fixa pagam IR.</li>
+            </ul>
+          </details>
         </div>
-        <p class="sim-numero">R$ 1.000</p>
-        <h3 id="sim-renda">Renda passiva de R$ 1.000 por mês: quanto tempo leva começando do zero</h3>
-        <p class="sim-resumo">Para receber R$ 1.000 por mês, você precisa de um patrimônio que renda isso. A meta cresce com a inflação até o dia em que você chega lá.</p>
-        <details class="conta-resumo">
-          <summary>Como fiz a conta</summary>
-          <ul>
-            <li>Patrimônio necessário = renda mensal × 12 ÷ rendimento anual. Para R$ 1.000 por mês a 10% ao ano, R$ 120 mil, em dinheiro de hoje.</li>
-            <li>A meta sobe com a inflação a cada mês. No mês em que o seu saldo alcança a meta daquele mês, você chegou.</li>
-            <li>Até lá, todo rendimento é reinvestido. Depois, você passa a sacar o rendimento e o patrimônio para de crescer; para a renda seguir a inflação, é preciso reinvestir uma parte, e isso fica para outro vídeo.</li>
-            <li>Uso a mesma taxa para acumular e para distribuir, sem imposto. É uma simplificação: dividendos de FII são isentos, juros de renda fixa pagam IR.</li>
-          </ul>
-        </details>
-        <p class="sim-abrir"><a class="link-forte" href="simuladores/#renda">Abrir o simulador<svg class="seta" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></p>
-      </article>
-    </div>
+        <p class="conta-abrir"><a class="link-forte" href="simuladores/#renda">Abrir o simulador<svg class="seta" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></a></p>
+      </li>
+    </ol>
   </div>
 </section>
 
@@ -166,7 +159,7 @@
         <li>No fim, a conta fica aberta: o simulador está aqui e a planilha vai no link da descrição.</li>
       </ol>
     </div>
-    <div class="cartao em-breve">
+    <div class="em-breve">
       <span class="estado"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Em produção</span>
       <h2>Primeiro vídeo em breve</h2>
       <p>O canal ainda não publicou nenhum vídeo. O primeiro sai com a conta aberta na tela e a planilha no link da descrição.</p>

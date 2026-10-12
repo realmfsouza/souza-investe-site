@@ -65,6 +65,8 @@ O provedor precisa aceitar esse formato e responder com status 2xx (e permitir C
 
 No mesmo arquivo, `youtubeUrl` e `instagramUrl` ligam os links do rodapé e o botão "Ver o canal" do blog. Vazios, os links não aparecem.
 
+`fotoHero` liga a foto do Matheus na abertura da home e na página Sobre: coloque o arquivo em `assets/` (PNG ou WebP com fundo transparente, de frente, cara de quem acabou de conferir uma conta, como na miniatura) e escreva o caminho, por exemplo `fotoHero: 'assets/matheus.png'`. Vazio, a abertura fica só com a conta.
+
 ## Links curtos `/s/`
 
 `/s/aporte/`, `/s/parcelar/`, `/s/fgc/` e `/s/renda/` são os links para a descrição dos vídeos. O GitHub Pages não faz redirecionamento 301 no servidor, então cada um é um `index.html` mínimo que redireciona no navegador: um JavaScript leva para `../../simuladores/#<aba>` preservando a query string (as UTMs chegam inteiras) e um `<meta http-equiv="refresh">` cobre quem está sem JavaScript, nesse caso sem a query string. Para o Google, isso conta como redirecionamento no cliente, e as páginas levam `noindex`.
