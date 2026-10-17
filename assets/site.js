@@ -22,6 +22,13 @@
     return typeof u === 'string' && /^https:\/\//i.test(u.trim());
   }
 
+  // O endereço da lista pode ser externo (https://) ou a rota do próprio site (/api/lista).
+  function enderecoLista(u) {
+    if (typeof u !== 'string') return '';
+    u = u.trim();
+    return urlSegura(u) || /^\/[A-Za-z0-9/_-]+$/.test(u) ? u : '';
+  }
+
   /* ---------- Tema claro e escuro ---------- */
   var botaoTema = document.querySelector('[data-tema]');
   var prefereEscuro = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
@@ -84,7 +91,7 @@
     var emailEl = form.querySelector('input[name="email"]');
     var erroEmail = form.querySelector('[data-erro-email]');
     var botao = form.querySelector('button[type="submit"]');
-    var endpoint = urlSegura(cfg.listEndpoint) ? cfg.listEndpoint.trim() : '';
+    var endpoint = enderecoLista(cfg.listEndpoint);
 
     if (!endpoint) {
       // Desligada: o HTML já vem com o fieldset desabilitado e o aviso visível.

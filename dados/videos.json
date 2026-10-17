@@ -1,1 +1,19 @@
-[]
+[
+  {
+    "numero": "001",
+    "slug": "001-cdi-100-nao-e-100",
+    "titulo": "Se você investe a 100% do CDI, está perdendo dinheiro. Fiz a conta",
+    "video_id": "0Yrpk1z1URw",
+    "publicado_em": "2026-10-16",
+    "simulador": "aporte",
+    "serie": "R$ 50 por mês",
+    "tema": "conta-digital",
+    "leitura_min": 5,
+    "linha_fina": "Quanto rende R$ 10 mil no CDI? A 100% do CDI não é 100%: depois do imposto, você leva de 77,5% a 85%, e uma LCI isenta a 90% do CDI rende mais que um CDB a 100%.",
+    "resumo_conta": [
+      "Número real: 100% do CDI rende 82,5% do CDI em 12 meses, depois do imposto. R$ 1.126,12 de R$ 1.365,00.",
+      "Promessa: \"rende 100% do CDI, seu dinheiro está trabalhando por você\".",
+      "Diferença: a isenta a 90% do CDI rende R$ 102,38 a mais em 12 meses sobre R$ 10.000, e 100% do CDI perdeu para a inflação em 2020 e 2021."
+    ]
+  }
+]

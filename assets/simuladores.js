@@ -22,7 +22,7 @@
   function num(id, def) { var el = document.getElementById(id); var v = parseFloat(String(el.value).replace(',', '.')); if (!isFinite(v)) v = def || 0; var mn = parseFloat(el.min), mx = parseFloat(el.max); if (isFinite(mn) && v < mn) v = mn; if (isFinite(mx) && v > mx) v = mx; return v; }
   function $(id) { return document.getElementById(id); }
   function mrate(annualPct) { return Math.pow(1 + annualPct / 100, 1 / 12) - 1; }
-  function irRate(months) { if (months <= 6) return 0.225; if (months <= 12) return 0.20; if (months <= 24) return 0.175; return 0.15; }
+  function irRate(months) { var dias = months * 365 / 12; if (dias <= 180) return 0.225; if (dias <= 360) return 0.20; if (dias <= 720) return 0.175; return 0.15; } // prazo em dias de calendário (mês = 365/12), Lei 11.033/2004
   function anosMeses(m) { var a = Math.floor(m / 12), r = m % 12; if (a === 0) return r + (r === 1 ? ' mês' : ' meses'); if (r === 0) return a + (a === 1 ? ' ano' : ' anos'); return a + (a === 1 ? ' ano e ' : ' anos e ') + r + (r === 1 ? ' mês' : ' meses'); }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 

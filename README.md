@@ -55,13 +55,24 @@ A página `/simuladores/` lê `dados/taxas.json` sem travar a tela: os simulador
 
 ## Ligar a lista de e-mail
 
-Abra `assets/config.js` e preencha `listEndpoint` com a URL `https://` do provedor de e-mail que vai receber o cadastro. O formulário envia um `POST` com JSON:
+O coletor é do próprio site, sem provedor pago: a função `functions/api/lista.js` (Cloudflare Pages Functions) recebe o formulário em `POST /api/lista` e grava num banco D1 da sua conta Cloudflare. Sem custo no plano gratuito, mesma origem do site (sem CORS) e só você acessa. A tabela `inscritos` (e-mail, nome, página de origem e data; nenhum IP) nasce sozinha no primeiro cadastro, e e-mail repetido não duplica. Quem lê a lista é o `python _sistema/lista.py` do OS.
+
+O formulário envia um `POST` com JSON:
 
 ```json
 { "nome": "Ana", "email": "ana@exemplo.com", "origem": "/simuladores/" }
 ```
 
-O provedor precisa aceitar esse formato e responder com status 2xx (e permitir CORS vindo do domínio do site). Enquanto `listEndpoint` estiver vazio, o formulário aparece desabilitado com o aviso "A lista ainda não está ligada. A planilha de cada vídeo fica no link da descrição." Com o provedor escolhido, revise o texto de `/privacidade/`.
+Para ligar, uma vez:
+
+1. Em https://dash.cloudflare.com, "Storage & Databases", "D1 SQL Database", "Create". Nome: `souza-investe-lista`.
+2. "Workers & Pages", o projeto do site, "Settings", "Bindings", "Add", "D1 database". Nome da variável: `DB`. Banco: `souza-investe-lista`. Salve.
+3. Em `assets/config.js`, `listEndpoint: '/api/lista'`. Commit e push: a Cloudflare publica de novo com a função e o banco ligados.
+4. Teste com o seu e-mail na página `/lista/` e confira no OS com `python _sistema/lista.py`.
+
+Antes do passo 3 o formulário fica desabilitado com o aviso "A lista ainda não está ligada. A planilha de cada vídeo fica no link da descrição." Se o passo 2 faltar, a função responde 503 e o formulário mostra "Não consegui enviar agora".
+
+O coletor só guarda. Mandar e-mail para a lista é outro passo: quando chegar a hora, o `lista.py --exportar` gera o CSV para importar no serviço de envio escolhido, e o texto de `/privacidade/` ganha o nome desse serviço. Se aparecer cadastro de robô, o próximo passo é o Turnstile da Cloudflare no formulário.
 
 No mesmo arquivo, `youtubeUrl` e `instagramUrl` ligam os links do rodapé e o botão "Ver o canal" do blog. Vazios, os links não aparecem.
 
@@ -88,6 +99,7 @@ No mesmo arquivo, `youtubeUrl` e `instagramUrl` ligam os links do rodapé e o bo
 | `assets/simuladores.css`, `assets/simuladores.js` | Os simuladores; o cálculo é o mesmo do arquivo original do OS |
 | `assets/taxas.js` | Preenche as taxas do dia nos simuladores |
 | `assets/config.js` | Endpoint da lista e redes |
+| `functions/api/lista.js` | O coletor da lista: grava o cadastro no D1 (Cloudflare Pages Functions) |
 | `assets/og.png`, `assets/og.svg` | Imagem do Open Graph, 1200x630 |
 
 Cabeçalho, menu, rodapé e o bloco da lista se repetem em cada página, porque não há build. Mudou o menu? Troque em todos os `index.html` e em `modelos/`.
@@ -104,6 +116,6 @@ Cabeçalho, menu, rodapé e o bloco da lista se repetem em cada página, porque 
 - Domínio próprio: decidido (um `.com.br` pelo registro.br, cerca de R$ 40 por ano), ainda não registrado. Até lá o site roda no endereço `.pages.dev`. Com o domínio no ar, preencha `SITE_URL` no `.env` do OS e configure o domínio na Cloudflare Pages.
 - Redirecionamentos `/s/` no servidor: a Cloudflare Pages aceita um arquivo `_redirects` com 301 de verdade. Fica para depois de o site estar no ar, com teste de que a query string (UTM) sobrevive; até lá os redirecionamentos no cliente continuam valendo.
 - Analytics: nenhum, por decisão do MVP.
-- Provedor de e-mail: ainda não escolhido; a lista fica desligada até `listEndpoint` ser preenchido.
+- Envio de e-mail para a lista: o coletor (D1) guarda os cadastros; o serviço de envio ainda não foi escolhido.
 - Lighthouse: não rodei auditoria formal de desempenho. A verificação desta versão foi manual, em navegador, a 360, 400, 768 e 1200px, nos dois temas.
 - `sitemap.xml` e `robots.txt`: só saem quando `SITE_URL` existir.
