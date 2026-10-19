@@ -1,5 +1,39 @@
 [
   {
+    "numero": "004",
+    "slug": "004-cafezinho-ou-aluguel",
+    "titulo": "O cafezinho pesa o mesmo que o aluguel. Fiz a conta",
+    "video_id": "kWsfX6NwNBA",
+    "publicado_em": "2026-10-18",
+    "simulador": "aporte",
+    "serie": "R$ 50 por mês",
+    "tema": "gastos",
+    "leitura_min": 2,
+    "linha_fina": "Gastos pequenos de R$ 15 por dia útil custam R$ 3.960 por ano, mais que 20% de um aluguel de R$ 1.500. A goteira pesa o mesmo que o cano.",
+    "resumo_conta": [
+      "Número real: R$ 15 por dia útil custam R$ 3.960 por ano, mais que 20% de um aluguel de R$ 1.500 (R$ 3.600).",
+      "Promessa: \"o cafezinho não faz diferença, o problema é o gasto grande\" (e o contrário, \"corte o cafezinho e fique rico\").",
+      "Diferença: cortar os dois leva aos primeiros R$ 10.000 em 15 meses; cortar só um, em 27 ou 30."
+    ]
+  },
+  {
+    "numero": "003",
+    "slug": "003-selic-caindo-10-mil",
+    "titulo": "Selic caindo não acabou com a renda fixa. Fiz a conta",
+    "video_id": "Y02BKDKedm0",
+    "publicado_em": "2026-10-17",
+    "simulador": "aporte",
+    "serie": "R$ 50 por mês",
+    "tema": "selic",
+    "leitura_min": 4,
+    "linha_fina": "Selic caindo: a queda da Selic de 13,65% para 12%, como o mercado espera para 2027, tira R$ 11 por mês de quem tem R$ 10 mil investidos. A renda fixa não acabou.",
+    "resumo_conta": [
+      "Número real: a Selic caindo de 13,65% para 12% tira R$ 11,34 por mês de quem tem R$ 10 mil. R$ 1.126,12 viram R$ 990,00 por ano.",
+      "Promessa: \"juros caindo, a renda fixa acabou, vai para a bolsa\".",
+      "Diferença: com a Selic a 12%, a renda fixa ainda rende R$ 536,91 acima da inflação esperada em um ano sobre R$ 10 mil."
+    ]
+  },
+  {
     "numero": "001",
     "slug": "001-cdi-100-nao-e-100",
     "titulo": "Se você investe a 100% do CDI, está perdendo dinheiro. Fiz a conta",
