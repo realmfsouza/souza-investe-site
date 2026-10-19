@@ -231,6 +231,53 @@
     });
   });
 
+  /* ---------- Blog: vídeo agendado, "em breve" até a estreia ---------- */
+  // O post e o card do vídeo agendado levam data-estreia (hora de Brasília). Até lá: selo, player e
+  // botão do YouTube travados; na hora, a página recarrega e tudo destrava (publicar_site.py no OS).
+  (function () {
+    var fuso = 'America/Sao_Paulo';
+    function dia(t) {
+      try { return new Intl.DateTimeFormat('pt-BR', { timeZone: fuso, day: '2-digit', month: '2-digit', year: 'numeric' }).format(t); }
+      catch (err) { return new Date(t).toLocaleDateString('pt-BR'); }
+    }
+    function hora(t) {
+      try { return new Intl.DateTimeFormat('pt-BR', { timeZone: fuso, hour: '2-digit', minute: '2-digit' }).format(t); }
+      catch (err) { return new Date(t).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }); }
+    }
+    function quando(t) {
+      var agora = Date.now();
+      var d = dia(t);
+      var rotulo = d === dia(agora) ? 'hoje' : d === dia(agora + 864e5) ? 'amanhã' : 'dia ' + d.slice(0, 5);
+      return rotulo + ' às ' + hora(t);
+    }
+    var menor = Infinity;
+    Array.prototype.forEach.call(document.querySelectorAll('[data-estreia]'), function (el) {
+      var t = Date.parse(el.getAttribute('data-estreia') || '');
+      if (!t || Date.now() >= t) return;
+      menor = Math.min(menor, t);
+      var texto = 'Em breve, ' + quando(t);
+      el.classList.add('em-breve');
+      var selo = document.createElement('span');
+      selo.className = 'tag tag-estreia';
+      selo.textContent = texto;
+      var meta = el.querySelector('.meta');
+      if (meta) { meta.insertBefore(document.createTextNode(' '), meta.firstChild); meta.insertBefore(selo, meta.firstChild); }
+      Array.prototype.forEach.call(el.querySelectorAll('a[href*="youtube.com/watch"]'), function (a) {
+        a.removeAttribute('href');
+        a.setAttribute('aria-disabled', 'true');
+        if (a.classList.contains('botao')) a.textContent = 'Estreia ' + quando(t);
+      });
+      Array.prototype.forEach.call(el.querySelectorAll('[data-player-botao]'), function (b) {
+        b.hidden = false;
+        b.disabled = true;
+        b.textContent = texto;
+      });
+    });
+    if (menor < Infinity && menor - Date.now() < 864e5) {
+      setTimeout(function () { window.location.reload(); }, menor - Date.now() + 3000);
+    }
+  })();
+
   /* ---------- Blog: filtro por conta ---------- */
   var filtros = document.querySelector('[data-filtros]');
   if (filtros) {

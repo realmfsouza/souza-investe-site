@@ -281,7 +281,7 @@ h3 {
 .botao-principal {
   background: var(--petroleo);
   border-color: var(--petroleo);
-  color: var(--petroleo-ink);
+  color: var(--ink);
 }
 
 .botao-tinta {
@@ -1276,6 +1276,19 @@ details.conta-resumo li + li {
   text-decoration: none;
 }
 
+/* ---------- Em breve: vídeo agendado (assets/site.js) ---------- */
+.tag-estreia {
+  border-color: var(--petroleo);
+  color: var(--ink);
+}
+.em-breve a[aria-disabled="true"] {
+  pointer-events: none;
+  opacity: 0.6;
+}
+.em-breve .player-botao[disabled] {
+  cursor: default;
+}
+
 /* ---------- Compartilhar ---------- */
 
 .compartilhar {
@@ -1586,7 +1599,7 @@ details.conta-resumo li + li {
   place-items: center;
   border-radius: 50%;
   background: var(--petroleo);
-  color: var(--petroleo-ink);
+  color: var(--ink);
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 1.25rem;

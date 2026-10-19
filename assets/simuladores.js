@@ -187,10 +187,10 @@
   $('fgc-list').addEventListener('input', function (e) {
     var row = e.target.closest('.fgc-in'); if (!row) return; var idx = +row.getAttribute('data-idx'), k = e.target.getAttribute('data-k');
     if (k === 'valor') { var v = parseFloat(e.target.value); fgcRows[idx].valor = isFinite(v) && v >= 0 ? v : 0; } else if (k === 'name') fgcRows[idx].name = e.target.value; else if (k === 'tipo') fgcRows[idx].tipo = e.target.value;
-    calcFgc();
+    mudou('fgc')();
   });
-  $('fgc-list').addEventListener('click', function (e) { var b = e.target.closest('[data-rm]'); if (!b) return; fgcRows.splice(+b.getAttribute('data-rm'), 1); renderFgcInputs(); calcFgc(); });
-  $('fgc-add').addEventListener('click', function () { if (fgcRows.length >= 8) return; fgcRows.push({ name: 'Instituição ' + (fgcRows.length + 1), valor: 0, tipo: 'fgc' }); renderFgcInputs(); calcFgc(); var last = $('fgc-list').querySelector('.fgc-in:last-child input'); if (last) last.focus(); });
+  $('fgc-list').addEventListener('click', function (e) { var b = e.target.closest('[data-rm]'); if (!b) return; fgcRows.splice(+b.getAttribute('data-rm'), 1); renderFgcInputs(); mudou('fgc')(); });
+  $('fgc-add').addEventListener('click', function () { if (fgcRows.length >= 8) return; fgcRows.push({ name: 'Instituição ' + (fgcRows.length + 1), valor: 0, tipo: 'fgc' }); renderFgcInputs(); mudou('fgc')(); var last = $('fgc-list').querySelector('.fgc-in:last-child input'); if (last) last.focus(); });
 
   // ---------- 04 Renda passiva ----------
   function simRenda(meta, monthly, initial, annual, infl, maxMonths) {
@@ -223,10 +223,61 @@
 
   // ---------- Wiring ----------
   function bind(ids, fn) { ids.forEach(function (id) { var el = $(id); if (el) el.addEventListener('input', fn); }); }
-  bind(['a-mensal', 'a-inicial', 'a-taxa', 'a-anos', 'a-infl'], calcAporte);
-  $('a-ir-sim').addEventListener('change', calcAporte); $('a-ir-nao').addEventListener('change', calcAporte);
-  bind(['p-preco', 'p-desc', 'p-n', 'p-j', 'p-taxa'], calcParcelar);
-  bind(['r-meta', 'r-mensal', 'r-inicial', 'r-taxa', 'r-infl'], calcRenda);
+  // A ordem da conta (o Matheus, 2026-10-19: "revela resultado durante o cálculo e divide espaço com os
+  // campos de inserção"): primeiro os campos, depois o botão, e só então o resultado, embaixo. Mudar um
+  // número depois não troca o resultado na hora: ele fica apagado até "Refazer a conta".
+  var calcs = { aporte: calcAporte, parcelar: calcParcelar, fgc: calcFgc, renda: calcRenda };
+  var revelado = {};
+  function preparar(p) {
+    var sec = $(p), res = sec && sec.querySelector('.results'), card = sec && sec.querySelector('.grid > .card');
+    if (!res || !card) return;
+    res.hidden = true;
+    var barra = document.createElement('div');
+    barra.className = 'conta-acoes';
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'botao botao-tinta conta-botao';
+    b.textContent = 'Fazer a conta';
+    var aviso = document.createElement('p');
+    aviso.className = 'conta-aviso';
+    aviso.hidden = true;
+    aviso.setAttribute('role', 'status');
+    aviso.textContent = 'Você mudou os números. Refaça a conta para ver o resultado novo.';
+    barra.appendChild(b);
+    barra.appendChild(aviso);
+    card.appendChild(barra);
+    b.addEventListener('click', function () { fazer(p, true); });
+    sec.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && e.target && e.target.tagName === 'INPUT') { e.preventDefault(); fazer(p, true); }
+    });
+  }
+  function fazer(p, rolar) {
+    var sec = $(p), res = sec.querySelector('.results'), b = sec.querySelector('.conta-botao'), aviso = sec.querySelector('.conta-aviso');
+    res.hidden = false;
+    res.classList.remove('desatualizado');
+    calcs[p]();
+    revelado[p] = true;
+    if (b) b.textContent = 'Refazer a conta';
+    if (aviso) aviso.hidden = true;
+    if (rolar) {
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var y = res.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+    }
+  }
+  function mudou(p) {
+    return function () {
+      if (!revelado[p]) return;
+      var sec = $(p);
+      sec.querySelector('.results').classList.add('desatualizado');
+      var a = sec.querySelector('.conta-aviso');
+      if (a) a.hidden = false;
+    };
+  }
+  bind(['a-mensal', 'a-inicial', 'a-taxa', 'a-anos', 'a-infl'], mudou('aporte'));
+  $('a-ir-sim').addEventListener('change', mudou('aporte')); $('a-ir-nao').addEventListener('change', mudou('aporte'));
+  bind(['p-preco', 'p-desc', 'p-n', 'p-j', 'p-taxa'], mudou('parcelar'));
+  bind(['r-meta', 'r-mensal', 'r-inicial', 'r-taxa', 'r-infl'], mudou('renda'));
 
   // Tabs
   var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab')), panels = ['aporte', 'parcelar', 'fgc', 'renda'];
@@ -237,7 +288,7 @@
     if (push) { try { history.replaceState(null, '', '#' + id); } catch (e) {} }
     try { localStorage.setItem('si-tab', id); } catch (e) {}
     // charts measure nothing on hidden panels, so draw after showing
-    if (id === 'aporte') calcAporte(); else if (id === 'parcelar') calcParcelar(); else if (id === 'fgc') calcFgc(); else calcRenda();
+    if (revelado[id]) calcs[id]();
   }
   // Integração ao site: depois de trocar de aba, a barra de abas volta ao topo da tela
   // (não o topo da página, onde estão o menu e a introdução). Sem animação se o sistema pedir.
@@ -255,6 +306,6 @@
   // Boot
   renderFgcInputs();
   var start = location.hash.replace('#', ''); if (panels.indexOf(start) < 0) { try { start = localStorage.getItem('si-tab') || 'aporte'; } catch (e) { start = 'aporte'; } }
-  calcAporte(); calcParcelar(); calcFgc(); calcRenda();
+  panels.forEach(preparar);
   showTab(start, false);
 })();

@@ -1,10 +1,29 @@
 [
   {
+    "numero": "005",
+    "slug": "005-eleicao-muda-seu-bolso",
+    "titulo": "Quem ganha a eleição não decide o seu rendimento. Fiz a conta",
+    "video_id": "-lHhSlqAdIA",
+    "publicado_em": "2026-10-19",
+    "estreia": "2026-10-19T18:30:00-03:00",
+    "simulador": null,
+    "serie": "Prova Real",
+    "tema": "politica",
+    "leitura_min": 7,
+    "linha_fina": "Eleição e investimentos: nas 6 eleições desde 2002, R$ 1.000 na Selic ganharam da inflação em todas. Quem ganha a eleição não decidiu o seu rendimento.",
+    "resumo_conta": [
+      "Número real: nos 6 anos de eleição desde 2002, R$ 1.000 na Selic ganharam da inflação em todos, bruto e líquido. A inflação mediana foi 5,85%, contra 5,76% nos anos sem eleição.",
+      "Promessa: \"se o candidato X ganhar, a bolsa dispara\" e \"se o candidato Y ganhar, seu dinheiro acaba\".",
+      "Diferença: os dois anos em que a Selic perdeu da inflação (2020 e 2021) e 4 das 5 maiores altas do dólar foram em anos sem eleição."
+    ]
+  },
+  {
     "numero": "004",
     "slug": "004-cafezinho-ou-aluguel",
     "titulo": "O cafezinho pesa o mesmo que o aluguel. Fiz a conta",
     "video_id": "kWsfX6NwNBA",
     "publicado_em": "2026-10-18",
+    "estreia": "",
     "simulador": "aporte",
     "serie": "R$ 50 por mês",
     "tema": "gastos",
@@ -22,6 +41,7 @@
     "titulo": "Selic caindo não acabou com a renda fixa. Fiz a conta",
     "video_id": "Y02BKDKedm0",
     "publicado_em": "2026-10-17",
+    "estreia": "",
     "simulador": "aporte",
     "serie": "R$ 50 por mês",
     "tema": "selic",
@@ -39,6 +59,7 @@
     "titulo": "Se você investe a 100% do CDI, está perdendo dinheiro. Fiz a conta",
     "video_id": "0Yrpk1z1URw",
     "publicado_em": "2026-10-16",
+    "estreia": "",
     "simulador": "aporte",
     "serie": "R$ 50 por mês",
     "tema": "conta-digital",
