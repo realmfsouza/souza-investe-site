@@ -1,5 +1,23 @@
 [
   {
+    "numero": "006",
+    "slug": "006-emprestimo-para-investir",
+    "titulo": "Empréstimo de R$ 100 mil para investir vale a pena? Fiz a conta",
+    "video_id": "tTaJeRIqSRc",
+    "publicado_em": "2026-10-20",
+    "estreia": "2026-10-20T19:45:00-03:00",
+    "simulador": null,
+    "serie": "Prova Real",
+    "tema": "emprestimo",
+    "leitura_min": 5,
+    "linha_fina": "Vale a pena pegar empréstimo para investir? R$ 10 mil emprestados a 6,39% ao mês para investir a 100% do CDI dão, no mínimo, R$ 3.494 de prejuízo em um ano. Fiz a conta com a taxa…",
+    "resumo_conta": [
+      "Número real: R$ 10.000 emprestados a 6,39% ao mês e investidos a 100% do CDI por 12 meses dão R$ 3.494,73 de prejuízo, no mínimo. Com R$ 100.000, R$ 34.947,27.",
+      "Promessa: \"pega o empréstimo, investe, e o rendimento paga a parcela\".",
+      "Diferença: o empréstimo custa 6,39% ao mês e o investimento rende 0,89% ao mês líquido. Para empatar, a taxa do empréstimo teria de cair para menos de um sétimo da média do mercado; nem o consignado médio chega lá."
+    ]
+  },
+  {
     "numero": "005",
     "slug": "005-eleicao-muda-seu-bolso",
     "titulo": "Quem ganha a eleição não decide o seu rendimento. Fiz a conta",
