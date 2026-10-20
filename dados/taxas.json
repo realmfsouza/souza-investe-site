@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-10-20T19:08:15-03:00",
+  "atualizado_em": "2026-10-20T20:13:06-03:00",
   "fonte": "Banco Central do Brasil, SGS",
   "selic_meta": {
     "valor": 13.75,
@@ -15,7 +15,7 @@
   },
   "tesouro": {
     "data_base": "2026-10-15",
-    "consultado_em": "2026-10-20T19:08:15-03:00",
+    "consultado_em": "2026-10-20T20:13:06-03:00",
     "fonte": "Tesouro Nacional, Tesouro Transparente: Preço e Taxa dos títulos ofertados pelo Tesouro Direto",
     "url": "https://www.tesourotransparente.gov.br/ckan/dataset/df56aa42-484a-4a59-8184-7676580c81e3/resource/796d2059-14e9-44e3-80c9-2d9e30b405c1/download/PrecoTaxaTesouroDireto.csv",
     "leitura": "taxa de compra ao ano, como o Tesouro publica: prefixado é a taxa cheia, ipca é a taxa real acima do IPCA e selic é o acréscimo sobre a Selic",
