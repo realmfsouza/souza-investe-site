@@ -1,5 +1,23 @@
 [
   {
+    "numero": "033",
+    "slug": "033-educacao-financeira-em-10-minutos",
+    "titulo": "Educação financeira básica em menos de 20 minutos",
+    "video_id": "1nVn4XfqI4c",
+    "publicado_em": "2026-11-04",
+    "estreia": "",
+    "simulador": "aporte",
+    "serie": "R$ 50 por mês",
+    "tema": "organizacao",
+    "leitura_min": 7,
+    "linha_fina": "Educação financeira básica: por onde começar? Antes de investir o primeiro real, R$ 1.000 no rotativo cobram R$ 151,80 de juros num mês, mais do que um ano de dinheiro guardado rende.",
+    "resumo_conta": [
+      "Número real: antes do primeiro real investido, quatro passos: o mapa (falta R$ 468,26 por mês na média da faixa), a dívida cara (um mês de rotativo, R$ 151,80, passa um ano de rendimento, R$ 136,50), a reserva que cabe (R$ 5.125,78 em 21 meses) e a régua (no primeiro ano, 95% do resultado é o depósito).",
+      "Promessa: \"antes de investir, aprenda educação financeira\", a frase que ninguém explica.",
+      "Diferença: educação financeira não é um curso, é uma ordem. Quem começa pelo quarto passo com uma dívida no cartão perde mais num mês do que ganha num ano."
+    ]
+  },
+  {
     "numero": "013",
     "slug": "013-consorcio-ou-guardar",
     "titulo": "Veja isso antes de assinar seu consórcio",
