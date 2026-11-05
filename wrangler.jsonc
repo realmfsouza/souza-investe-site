@@ -1,6 +1,5 @@
-// ATENÇÃO: esta configuração NÃO sobe enquanto database_id for o marcador "TROCAR_PELO_ID_DO_D1".
-// O Matheus cria o banco D1 "souza-investe-lista" no painel da Cloudflare e o id dele entra abaixo.
-// O id do banco é identificador, não segredo.
+// O banco D1 "souza-investe-lista" existe desde 2026-11-04 (criado pelo Matheus no painel da
+// Cloudflare), e o database_id abaixo é o dele. O id do banco é identificador, não segredo.
 //
 // Modo Worker com assets estáticos: o site sai da pasta inteira (o que o .assetsignore deixa) e o
 // worker/index.js só atende /api/lista. Deploy: npx wrangler deploy (README, "Publicar").
@@ -19,7 +18,7 @@
     {
       "binding": "DB",
       "database_name": "souza-investe-lista",
-      "database_id": "TROCAR_PELO_ID_DO_D1"
+      "database_id": "2f8da646-5b21-408c-904f-b3b25b29e803"
     }
   ]
 }

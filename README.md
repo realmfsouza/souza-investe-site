@@ -34,7 +34,7 @@ O site no ar responde em `https://souza-investe-site.realmfsouza.workers.dev`, e
 - `worker/index.js`: só atende `/api/lista` (POST vai para o coletor de `functions/api/lista.js`; outro método recebe 405). Todo o resto é arquivo estático.
 - `.assetsignore`: o que não vai para o ar, como `README.md`, `wrangler.jsonc`, `worker/`, `functions/`, `modelos/` e `docs/`. Sobem só as páginas, `assets/`, `dados/`, `blog/`, `s/` e a `404.html`.
 - Deploy: `npx wrangler deploy`, nesta pasta, logado na conta da Cloudflare (`npx wrangler login`, uma vez). Antes, `npx wrangler deploy --dry-run --outdir <pasta temporária>` confere a configuração sem subir nada. Se o projeto estiver ligado ao GitHub (Workers Builds), o envio para a `main` faz o deploy sozinho; o comando de deploy configurado aparece em "Settings", "Build".
-- Enquanto o `database_id` do `wrangler.jsonc` for o marcador `TROCAR_PELO_ID_DO_D1`, o deploy falha de propósito: o banco ainda não existe.
+- O banco D1 `souza-investe-lista` existe desde 04/11/2026, e o `database_id` dele já está no `wrangler.jsonc` (é identificador, não segredo).
 
 ### Modo Pages (o endereço `*.pages.dev`)
 
@@ -102,8 +102,8 @@ A `origem` guarda só o caminho da página e os parâmetros `utm_*`, até 300 ca
 
 Para ligar, uma vez (só o Matheus, na conta dele):
 
-1. Em https://dash.cloudflare.com, "Storage & Databases", "D1 SQL Database", "Create". Nome: `souza-investe-lista`. Copie o "Database ID" da página do banco (é identificador, não segredo).
-2. Modo Worker: troque o marcador `TROCAR_PELO_ID_DO_D1` do `wrangler.jsonc` por esse id e publique (`npx wrangler deploy`, ou o envio para a `main`, se o deploy for pelo GitHub). Modo Pages: "Workers & Pages", o projeto do site, "Settings", "Bindings", "Add", "D1 database". Nome da variável: `DB`. Banco: `souza-investe-lista`. Salve.
+1. O banco: feito em 04/11/2026. O `souza-investe-lista` foi criado em https://dash.cloudflare.com, "Storage & Databases", "D1 SQL Database", e o "Database ID" dele (identificador, não segredo) está no `wrangler.jsonc`. Se um dia o banco for recriado, o id novo entra no mesmo lugar.
+2. Modo Worker: publique (`npx wrangler deploy`, ou o envio para a `main`, se o deploy for pelo GitHub). Modo Pages: "Workers & Pages", o projeto do site, "Settings", "Bindings", "Add", "D1 database". Nome da variável: `DB`. Banco: `souza-investe-lista`. Salve.
 3. `assets/config.js` já traz `listEndpoint: '/api/lista'`.
 4. Teste: `GET /api/lista` no ar tem de dar 405 (404 quer dizer que o coletor não subiu). Depois cadastre o seu e-mail na página `/lista/` e confira no OS com `python _sistema/lista.py`.
 
