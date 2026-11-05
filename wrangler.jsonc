@@ -1,0 +1,25 @@
+// ATENÇÃO: esta configuração NÃO sobe enquanto database_id for o marcador "TROCAR_PELO_ID_DO_D1".
+// O Matheus cria o banco D1 "souza-investe-lista" no painel da Cloudflare e o id dele entra abaixo.
+// O id do banco é identificador, não segredo.
+//
+// Modo Worker com assets estáticos: o site sai da pasta inteira (o que o .assetsignore deixa) e o
+// worker/index.js só atende /api/lista. Deploy: npx wrangler deploy (README, "Publicar").
+// A Cloudflare Pages ignora este arquivo, porque ele não tem pages_build_output_dir; nesse modo vale
+// a pasta functions/ (a mesma fonte do coletor).
+{
+  "name": "souza-investe-site",
+  "main": "worker/index.js",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "souza-investe-lista",
+      "database_id": "TROCAR_PELO_ID_DO_D1"
+    }
+  ]
+}

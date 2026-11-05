@@ -75,7 +75,7 @@
 
     <h2>Cookies e medição</h2>
     <p>Esta versão do site não usa cookies, analytics nem pixel de rede social. O navegador guarda só duas preferências, no armazenamento local, sem enviar para ninguém: o tema claro ou escuro que você escolheu e a última aba de simulador que você abriu.</p>
-    <p>Três serviços de terceiros entram no caminho, e cada um recebe dados técnicos do acesso, como o endereço IP: o GitHub Pages, que hospeda o site; o Google Fonts, de onde vêm as fontes; e o YouTube, de onde vêm as capas na página de vídeos, quando houver vídeo.</p>
+    <p>Três serviços de terceiros entram no caminho, e cada um recebe dados técnicos do acesso, como o endereço IP: a Cloudflare, que hospeda o site; o Google Fonts, de onde vêm as fontes; e o YouTube, de onde vêm as capas na página de vídeos, quando houver vídeo.</p>
 
     <h2>Aviso educacional</h2>
     <p>Conteúdo educacional com taxas genéricas. Não é recomendação de investimento. Os simuladores mostram contas com as taxas que você coloca; o resultado vale se a taxa se mantiver. Tabela do IR e regras do FGC conforme vigentes em outubro de 2026. Antes de decidir, confira a taxa do dia e as regras na fonte.</p>
@@ -99,6 +99,10 @@
           <label for="lista-email">E-mail</label>
           <input id="lista-email" name="email" type="email" inputmode="email" autocomplete="email" maxlength="160" placeholder="voce@exemplo.com" required aria-describedby="lista-email-erro">
           <p class="erro-campo" id="lista-email-erro" data-erro-email hidden></p>
+        </div>
+        <div class="campo-isca" aria-hidden="true">
+          <label for="lista-site">Site (deixe em branco)</label>
+          <input id="lista-site" name="site" type="text" tabindex="-1" autocomplete="off">
         </div>
         <p class="consentimento">Ao cadastrar, você aceita receber e-mails do Souza Investe com contas e simuladores novos. Sem spam; cancele quando quiser. Seus dados ficam com a gente, guardados na Cloudflare (que hospeda este site) e, quando a lista mandar e-mail, no serviço de envio, só para isso. <a href="../privacidade/">Como cuido dos seus dados</a>.</p>
         <button class="botao botao-tinta" type="submit">Quero receber</button>

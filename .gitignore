@@ -18,3 +18,8 @@ __pycache__/
 *.env
 client_secret*.json
 token.json
+
+# Wrangler (modo Worker): estado local do dev e do D1 de teste
+.wrangler/
+node_modules/
+.dev.vars*

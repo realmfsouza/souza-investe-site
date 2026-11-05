@@ -8,23 +8,45 @@ Souza investe, mas antes faz a conta.
 
 ## Rodar no computador
 
+Só o site estático, sem a lista:
+
 ```bash
 python -m http.server 8765
 ```
 
 Abra http://localhost:8765/. Use um servidor local, não o arquivo direto: os simuladores leem `dados/taxas.json` com `fetch`, que o navegador bloqueia em `file://`.
 
-## Publicar na Cloudflare Pages
+O site inteiro, com o coletor da lista e um D1 local de teste (precisa do Node; nada toca a conta da Cloudflare):
 
-O código fica em um repositório privado no GitHub (`realmfsouza/souza-investe-site`). Quem serve o site é a Cloudflare Pages, que publica de repositório privado sem custo, com HTTPS e domínio próprio.
+```bash
+npx --yes wrangler@4 dev --local --port 8787
+```
 
-1. Envie este conteúdo para a branch `main` do repositório (`git push`).
+Abra http://localhost:8787/. O banco de teste fica em `.wrangler/state/`, fora do git. Para ver o que entrou: `npx --yes wrangler@4 d1 execute souza-investe-lista --local --command "SELECT * FROM inscritos"`. E-mail de teste, só `@example.com`.
+
+## Publicar
+
+O site no ar responde em `https://souza-investe-site.realmfsouza.workers.dev`, endereço de Worker. Por isso este repositório traz a configuração do **modo Worker com assets estáticos**, e o modo Pages continua funcionando com o mesmo código. Qual dos dois é o projeto de verdade se confirma no painel da Cloudflare, em "Workers & Pages" (o ícone e a aba "Deployments" dizem se é Worker ou Pages).
+
+### Modo Worker (o endereço `*.workers.dev`)
+
+- `wrangler.jsonc`: o nome do Worker (`souza-investe-site`), o `worker/index.js`, a pasta de assets (a raiz, `.`), a página `404.html` para o que não existe e o banco D1 com o nome de variável `DB`.
+- `worker/index.js`: só atende `/api/lista` (POST vai para o coletor de `functions/api/lista.js`; outro método recebe 405). Todo o resto é arquivo estático.
+- `.assetsignore`: o que não vai para o ar, como `README.md`, `wrangler.jsonc`, `worker/`, `functions/`, `modelos/` e `docs/`. Sobem só as páginas, `assets/`, `dados/`, `blog/`, `s/` e a `404.html`.
+- Deploy: `npx wrangler deploy`, nesta pasta, logado na conta da Cloudflare (`npx wrangler login`, uma vez). Antes, `npx wrangler deploy --dry-run --outdir <pasta temporária>` confere a configuração sem subir nada. Se o projeto estiver ligado ao GitHub (Workers Builds), o envio para a `main` faz o deploy sozinho; o comando de deploy configurado aparece em "Settings", "Build".
+- Enquanto o `database_id` do `wrangler.jsonc` for o marcador `TROCAR_PELO_ID_DO_D1`, o deploy falha de propósito: o banco ainda não existe.
+
+### Modo Pages (o endereço `*.pages.dev`)
+
+1. Envie este conteúdo para a branch `main` do repositório.
 2. Em https://dash.cloudflare.com, "Workers & Pages", "Create", aba "Pages", "Connect to Git". Autorize o app da Cloudflare no GitHub só para este repositório.
 3. Configuração do projeto: framework "None", comando de build vazio, diretório de saída `/` (a raiz). Salvar e implantar.
-4. O site sobe em `https://<projeto>.pages.dev`. Cada `git push` na `main` publica de novo em menos de um minuto.
+4. O site sobe em `https://<projeto>.pages.dev`. Cada envio para a `main` publica de novo em menos de um minuto.
 5. Domínio próprio: "Custom domains", "Set up a custom domain", digite o domínio e siga as instruções de DNS (um CNAME apontando para o endereço `.pages.dev`). O certificado HTTPS é automático.
 
-Todos os links são relativos, então o site funciona na raiz de um domínio ou numa subpasta sem mudar nada. O arquivo `.nojekyll` fica por compatibilidade, caso um dia o site volte para o GitHub Pages.
+A Pages ignora o `wrangler.jsonc` (ele não tem `pages_build_output_dir`) e roda o coletor direto da pasta `functions/`. Nesse modo, a `404.html` da raiz também vira a página de erro.
+
+Os links das páginas são relativos, então o site funciona na raiz de um domínio ou numa subpasta sem mudar nada. A exceção é a `404.html`, que abre em qualquer profundidade de URL e por isso usa caminhos a partir da raiz (`/assets/`, `/blog/`). O arquivo `.nojekyll` fica por compatibilidade, caso um dia o site volte para o GitHub Pages.
 
 ## Como o OS atualiza o site
 
@@ -55,24 +77,39 @@ A página `/simuladores/` lê `dados/taxas.json` sem travar a tela: os simulador
 
 ## Ligar a lista de e-mail
 
-O coletor é do próprio site, sem provedor pago: a função `functions/api/lista.js` (Cloudflare Pages Functions) recebe o formulário em `POST /api/lista` e grava num banco D1 da sua conta Cloudflare. Sem custo no plano gratuito, mesma origem do site (sem CORS) e só você acessa. A tabela `inscritos` (e-mail, nome, página de origem e data; nenhum IP) nasce sozinha no primeiro cadastro, e e-mail repetido não duplica. Quem lê a lista é o `python _sistema/lista.py` do OS.
+O coletor é do próprio site, sem provedor pago: `functions/api/lista.js` recebe o formulário em `POST /api/lista` e grava num banco D1 da sua conta Cloudflare. No modo Worker quem chama o coletor é o `worker/index.js`; no modo Pages, a própria Pages, pela pasta `functions/`. Sem custo no plano gratuito, mesma origem do site (sem CORS) e só você acessa. A tabela `inscritos` (e-mail, nome, página de origem com as UTMs e data; nenhum IP) nasce sozinha no primeiro cadastro, e e-mail repetido não duplica. Quem lê a lista é o `python _sistema/lista.py` do OS.
 
 O formulário envia um `POST` com JSON:
 
 ```json
-{ "nome": "Ana", "email": "ana@exemplo.com", "origem": "/simuladores/" }
+{ "nome": "Ana", "email": "ana@example.com", "origem": "/simuladores/?utm_source=youtube&utm_campaign=video-012", "site": "" }
 ```
 
-Para ligar, uma vez:
+O que o coletor faz com cada envio, sem guardar IP:
 
-1. Em https://dash.cloudflare.com, "Storage & Databases", "D1 SQL Database", "Create". Nome: `souza-investe-lista`.
-2. "Workers & Pages", o projeto do site, "Settings", "Bindings", "Add", "D1 database". Nome da variável: `DB`. Banco: `souza-investe-lista`. Salve.
-3. Em `assets/config.js`, `listEndpoint: '/api/lista'`. Commit e push: a Cloudflare publica de novo com a função e o banco ligados.
-4. Teste com o seu e-mail na página `/lista/` e confira no OS com `python _sistema/lista.py`.
+| Caso | Resposta |
+|---|---|
+| Sem cabeçalho `Origin`, ou de outro site | 403 |
+| Corpo acima de 2.000 caracteres | 413 |
+| JSON inválido ou e-mail fora da regra | 400 |
+| Campo-isca `site` preenchido (robô) | 200, e nada é gravado |
+| 20 cadastros no último minuto, no site inteiro | o próximo recebe 429 |
+| Banco não ligado | 503 |
+| Cadastro certo, ou e-mail que já estava na lista | 200 |
+| `GET` ou outro método em `/api/lista` | 405 |
 
-Antes do passo 3 o formulário fica desabilitado com o aviso "A lista ainda não está ligada. Enquanto isso, a conta completa de cada vídeo fica no blog." Se o passo 2 faltar, a função responde 503 e o formulário mostra "Não consegui enviar agora".
+A `origem` guarda só o caminho da página e os parâmetros `utm_*`, até 300 caracteres: é o que diz de qual vídeo a pessoa veio. O formulário mostra uma frase para cada resposta, e a de sucesso não promete envio, porque o serviço de envio ainda não existe.
 
-O coletor só guarda. Mandar e-mail para a lista é outro passo: quando chegar a hora, o `lista.py --exportar` gera o CSV para importar no serviço de envio escolhido, e o texto de `/privacidade/` ganha o nome desse serviço. Se aparecer cadastro de robô, o próximo passo é o Turnstile da Cloudflare no formulário.
+Para ligar, uma vez (só o Matheus, na conta dele):
+
+1. Em https://dash.cloudflare.com, "Storage & Databases", "D1 SQL Database", "Create". Nome: `souza-investe-lista`. Copie o "Database ID" da página do banco (é identificador, não segredo).
+2. Modo Worker: troque o marcador `TROCAR_PELO_ID_DO_D1` do `wrangler.jsonc` por esse id e publique (`npx wrangler deploy`, ou o envio para a `main`, se o deploy for pelo GitHub). Modo Pages: "Workers & Pages", o projeto do site, "Settings", "Bindings", "Add", "D1 database". Nome da variável: `DB`. Banco: `souza-investe-lista`. Salve.
+3. `assets/config.js` já traz `listEndpoint: '/api/lista'`.
+4. Teste: `GET /api/lista` no ar tem de dar 405 (404 quer dizer que o coletor não subiu). Depois cadastre o seu e-mail na página `/lista/` e confira no OS com `python _sistema/lista.py`.
+
+Com `listEndpoint` vazio, o formulário fica desabilitado com o aviso "A lista ainda não está ligada. Enquanto isso, a conta completa de cada vídeo fica no blog." Se o banco faltar, o coletor responde 503 e o formulário mostra "A lista está fora do ar agora."
+
+O coletor só guarda. Mandar e-mail para a lista é outro passo: quando chegar a hora, o `lista.py --exportar` gera o CSV para importar no serviço de envio escolhido, e o texto de `/privacidade/` ganha o nome desse serviço. Se a isca e o limite por minuto não bastarem contra robô, o próximo passo é o Turnstile da Cloudflare no formulário.
 
 No mesmo arquivo, `youtubeUrl` e `instagramUrl` ligam os links do rodapé e o botão "Ver o canal" do blog. Vazios, os links não aparecem.
 
@@ -99,7 +136,9 @@ No mesmo arquivo, `youtubeUrl` e `instagramUrl` ligam os links do rodapé e o bo
 | `assets/simuladores.css`, `assets/simuladores.js` | Os simuladores; o cálculo é o mesmo do arquivo original do OS |
 | `assets/taxas.js` | Preenche as taxas do dia nos simuladores |
 | `assets/config.js` | Endpoint da lista e redes |
-| `functions/api/lista.js` | O coletor da lista: grava o cadastro no D1 (Cloudflare Pages Functions) |
+| `functions/api/lista.js` | O coletor da lista: grava o cadastro no D1 (o mesmo código no modo Worker e no modo Pages) |
+| `worker/index.js`, `wrangler.jsonc`, `.assetsignore` | O modo Worker: o roteador do `/api/lista`, a configuração e o que não sobe |
+| `404.html` | A página de erro, com caminhos a partir da raiz |
 | `assets/og.png`, `assets/og.svg` | Imagem do Open Graph, 1200x630 |
 
 Cabeçalho, menu, rodapé e o bloco da lista se repetem em cada página, porque não há build. Mudou o menu? Troque em todos os `index.html` e em `modelos/`.

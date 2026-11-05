@@ -76,7 +76,28 @@
   }
 
   /* ---------- Lista de e-mail ---------- */
-  var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  // A mesma regra do coletor (functions/api/lista.js): parte local, @, domínio com ponto e final de 2 a 24 letras.
+  var EMAIL = /^[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[A-Za-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?\.)+[A-Za-z]{2,24}$/;
+
+  // Uma frase por resposta do coletor. Nenhuma promete envio nem prazo: o serviço de envio ainda não existe.
+  var ERROS_LISTA = {
+    400: 'Esse e-mail não passou na conferência. Confere se ele está completo, com @ e o final do endereço.',
+    403: 'Não consegui confirmar que o cadastro saiu desta página. Recarrega a página e tenta de novo.',
+    413: 'O cadastro ficou grande demais. Encurta o nome e tenta de novo.',
+    429: 'Muita gente se cadastrou neste minuto. Espera um minuto e tenta de novo.',
+    503: 'A lista está fora do ar agora. Tenta de novo mais tarde.'
+  };
+  var ERRO_REDE = 'Não consegui enviar: parece que a conexão caiu. Confere a internet e tenta de novo.';
+  var ERRO_OUTRO = 'Não consegui enviar agora. Tenta de novo em um minuto.';
+
+  // A página de origem do cadastro: o caminho e só os parâmetros utm_* (o vídeo de onde a pessoa veio).
+  function origemDoCadastro() {
+    var utm = [];
+    (location.search || '').replace(/^\?/, '').split('&').forEach(function (par) {
+      if (/^utm_[a-z]+=/i.test(par)) utm.push(par);
+    });
+    return (location.pathname + (utm.length ? '?' + utm.join('&') : '')).slice(0, 300);
+  }
 
   function mensagem(el, tipo, texto) {
     el.setAttribute('data-tipo', tipo);
@@ -89,6 +110,7 @@
     var status = form.querySelector('[data-lista-status]');
     var nomeEl = form.querySelector('input[name="nome"]');
     var emailEl = form.querySelector('input[name="email"]');
+    var iscaEl = form.querySelector('input[name="site"]');
     var erroEmail = form.querySelector('[data-erro-email]');
     var botao = form.querySelector('button[type="submit"]');
     var endpoint = enderecoLista(cfg.listEndpoint);
@@ -127,19 +149,25 @@
       botao.disabled = true;
       var textoBotao = botao.textContent;
       botao.textContent = 'Enviando…';
+      function falhou(texto) {
+        botao.disabled = false;
+        botao.textContent = textoBotao;
+        mensagem(status, 'erro', texto);
+      }
       fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nome: nome, email: email, origem: location.pathname })
+        body: JSON.stringify({ nome: nome, email: email, origem: origemDoCadastro(), site: iscaEl ? iscaEl.value : '' })
       }).then(function (r) {
-        if (!r.ok) throw new Error('HTTP ' + r.status);
+        if (!r.ok) {
+          falhou(ERROS_LISTA[r.status] || ERRO_OUTRO);
+          return;
+        }
         botao.textContent = 'Cadastrado';
-        mensagem(status, 'ok', 'Anotado' + (nome ? ', ' + nome : '') + '. Quando sair conta nova, você recebe primeiro.');
+        mensagem(status, 'ok', 'Anotado' + (nome ? ', ' + nome : '') + '. Seu e-mail está na lista.');
         form.reset();
-      }).catch(function () {
-        botao.disabled = false;
-        botao.textContent = textoBotao;
-        mensagem(status, 'erro', 'Não consegui enviar agora. Tenta de novo em um minuto.');
+      }, function () {
+        falhou(ERRO_REDE);
       });
     });
   });
