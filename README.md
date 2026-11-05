@@ -1,6 +1,6 @@
 # Souza Investe: site
 
-Site do canal Souza Investe, apresentado por Matheus Souza. Hospeda os simuladores da série Prova Real, captura e-mail em troca da planilha de cada vídeo e é a casa da marca.
+Site do canal Souza Investe, apresentado por Matheus Souza. Hospeda os simuladores da série Prova Real, captura e-mail para o aviso de conta nova e é a casa da marca.
 
 Souza investe, mas antes faz a conta.
 
@@ -70,7 +70,7 @@ Para ligar, uma vez:
 3. Em `assets/config.js`, `listEndpoint: '/api/lista'`. Commit e push: a Cloudflare publica de novo com a função e o banco ligados.
 4. Teste com o seu e-mail na página `/lista/` e confira no OS com `python _sistema/lista.py`.
 
-Antes do passo 3 o formulário fica desabilitado com o aviso "A lista ainda não está ligada. A planilha de cada vídeo fica no link da descrição." Se o passo 2 faltar, a função responde 503 e o formulário mostra "Não consegui enviar agora".
+Antes do passo 3 o formulário fica desabilitado com o aviso "A lista ainda não está ligada. Enquanto isso, a conta completa de cada vídeo fica no blog." Se o passo 2 faltar, a função responde 503 e o formulário mostra "Não consegui enviar agora".
 
 O coletor só guarda. Mandar e-mail para a lista é outro passo: quando chegar a hora, o `lista.py --exportar` gera o CSV para importar no serviço de envio escolhido, e o texto de `/privacidade/` ganha o nome desse serviço. Se aparecer cadastro de robô, o próximo passo é o Turnstile da Cloudflare no formulário.
 

@@ -1,8 +1,134 @@
 [
   {
+    "numero": "013",
+    "slug": "013-consorcio-ou-guardar",
+    "titulo": "Veja isso antes de assinar seu consórcio",
+    "video_id": "1Og3FAGgGV4",
+    "publicado_em": "2026-11-02",
+    "estreia": "",
+    "simulador": "aporte",
+    "serie": "R$ 50 por mês",
+    "tema": "consorcio",
+    "leitura_min": 7,
+    "linha_fina": "Consórcio vale a pena? O folheto diz carro de R$ 50 mil sem juros, mas tem 3 números no contrato que quase ninguém lê antes de assinar. E existe um mês em que guardar a parcela passa o consórcio na frente.",
+    "resumo_conta": [
+      "Número real: consórcio de R$ 50 mil em 90 meses cobra R$ 8.722,76 de taxa de administração. Guardar a mesma parcela a 100% do CDI chega ao carro corrigido no mês 65.",
+      "Promessa: \"consórcio é investimento sem juros\".",
+      "Diferença: sorteado no mês 1, o consórcio custa 8,10% ao ano e ganha do financiamento médio (26,42%). Sorteado depois do mês 65, perde para quem guardou; no mês 90, são R$ 34.952,41 a menos."
+    ]
+  },
+  {
+    "numero": "012",
+    "slug": "012-consignado-no-salario",
+    "titulo": "Veja isso antes de assinar seu empréstimo consignado",
+    "video_id": "cvKewsCH_nc",
+    "publicado_em": "2026-10-30",
+    "estreia": "",
+    "simulador": "parcelar",
+    "serie": "Parcelar ou à vista",
+    "tema": "emprestimo",
+    "leitura_min": 11,
+    "linha_fina": "Empréstimo consignado CLT vale a pena ou é armadilha? Você pega R$ 5 mil com a parcela descontada direto no salário, mas tem 2 perguntas que quase ninguém faz antes de assinar. E o contrato leva junto coisas que não aparecem na simulação.",
+    "resumo_conta": [
+      "Número real: R$ 5.000 no consignado do setor privado, à taxa média de 3,79% ao mês, viram R$ 7.702,12 em 24 vezes e R$ 10.928,76 em 48 vezes. Em 48 vezes, os juros passam do valor emprestado.",
+      "Promessa: \"consignado tem o juro mais baixo, então é o empréstimo bom\" e \"é só descontar um pouquinho do salário\".",
+      "Diferença: o juro é o menor da tabela da série, e mesmo assim a dívida mais que dobra em 48 vezes. Como troca de dívida cara, economiza R$ 1.758,33 em 24 vezes; esticado em 48, custa R$ 928,76 a mais que o teto do cartão."
+    ]
+  },
+  {
+    "numero": "011",
+    "slug": "011-fatura-que-nao-fecha",
+    "titulo": "Como quitar seu cartão de crédito pagando menos (-R$ 855)",
+    "video_id": "EYrbIx5p0U4",
+    "publicado_em": "2026-10-28",
+    "estreia": "",
+    "simulador": "parcelar",
+    "serie": "Parcelar ou à vista",
+    "tema": "cartao",
+    "leitura_min": 6,
+    "linha_fina": "Como quitar o cartão de crédito pagando menos? Com uma fatura de R$ 2.000 e R$ 800 na conta, a ordem certa custa R$ 855,28 a menos de juros do que guardar o dinheiro e parcelar tudo.",
+    "resumo_conta": [
+      "Número real: com R$ 800 para uma fatura de R$ 2.000, o caminho mais caro (guardar os R$ 800 e parcelar tudo) custa R$ 1.409,79 de juros e come 11,4% do salário por um ano; o mais barato (pagar R$ 800 e trocar o resto por empréstimo pessoal) custa R$ 554,50 e come 5,8%.",
+      "Promessa: \"guarda o dinheiro e parcela a fatura, que a parcela cabe no bolso\".",
+      "Diferença: R$ 855,28 entre o pior e o melhor caminho, com o mesmo salário e a mesma fatura. Só guardar os R$ 800 em vez de pagar a fatura custa R$ 473,82 a mais, já descontado o rendimento."
+    ]
+  },
+  {
+    "numero": "010",
+    "slug": "010-rotativo-1000-reais",
+    "titulo": "Dívida no cartão de crédito dobra em 5 meses",
+    "video_id": "6FhM-6FnDTY",
+    "publicado_em": "2026-10-26",
+    "estreia": "",
+    "simulador": "parcelar",
+    "serie": "Parcelar ou à vista",
+    "tema": "cartao",
+    "leitura_min": 7,
+    "linha_fina": "Dívida no cartão de crédito: o que fazer quando ela não para de crescer? O teto dos juros do rotativo existe, mas R$ 1.000 no rotativo ainda viram R$ 2.000, em menos de 5 meses.",
+    "resumo_conta": [
+      "Número real: R$ 1.000 no rotativo viram R$ 2.000 com o teto, e o teto chega em menos de 5 meses. Sem a regra, seriam R$ 5.451,61 em 12 meses.",
+      "Promessa: \"agora o governo limitou os juros, dever no cartão ficou barato\".",
+      "Diferença: a regra corta R$ 3.451,61 da conta, mas a dívida ainda dobra. Parcelar a fatura no primeiro dia custa R$ 1.704,89, R$ 295,11 a menos que o teto e R$ 187,20 a menos que passar um mês no rotativo antes."
+    ]
+  },
+  {
+    "numero": "007",
+    "slug": "007-alugar-ou-financiar-com-3-mil",
+    "titulo": "Alugar ou financiar? R$ 227 mil só de juros",
+    "video_id": "E6fkELIDWYU",
+    "publicado_em": "2026-10-23",
+    "estreia": "",
+    "simulador": null,
+    "serie": "Prova Real",
+    "tema": "imovel",
+    "leitura_min": 7,
+    "linha_fina": "Alugar ou financiar um imóvel? Com salário de R$ 3.000, o financiamento de 30 anos cobra R$ 227 mil só de juros, e juros também é aluguel.",
+    "resumo_conta": [
+      "Número real: com salário de R$ 3.000, a parcela de R$ 900 financia R$ 96.525 em 30 anos e paga R$ 227.475 de juros. Alugar o mesmo imóvel e investir a diferença ganha se o imóvel subir menos de 5,73% ao ano por 30 anos, com o CDI a 13,65%.",
+      "Promessa: \"pagar aluguel é jogar dinheiro fora\" e \"o imóvel vai disparar, compre antes\".",
+      "Diferença: nos últimos 10 anos o imóvel subiu 3,77% ao ano, menos que a inflação de 4,96%; nesse ritmo, quem alugou e investiu termina 30 anos com R$ 317.259 em dinheiro de hoje, contra R$ 95.553 de quem financiou."
+    ]
+  },
+  {
+    "numero": "009",
+    "slug": "009-1205-vira-95-mil",
+    "titulo": "Invista R$ 1.205 uma vez e fique milionário",
+    "video_id": "TRs3msW1Ahs",
+    "publicado_em": "2026-10-22",
+    "estreia": "",
+    "simulador": "aporte",
+    "serie": "R$ 50 por mês",
+    "tema": "promessa",
+    "leitura_min": 6,
+    "linha_fina": "Como ficar milionário investindo R$ 1.205 uma vez? Dá, em quase 54 anos, e esse milhão compra o que R$ 89.889 compram hoje.",
+    "resumo_conta": [
+      "Número real: R$ 1.205 viram R$ 1 milhão líquido em quase 54 anos, se o CDI ficar em 13,65% o tempo todo. E esse milhão compra o que R$ 89.889 compram hoje.",
+      "Promessa: \"invista R$ 1.205 uma vez e chegue em R$ 95.418 sem fazer nada\", levada até o milhão.",
+      "Diferença: o número sai, mas o título esconde o prazo e a inflação. Com R$ 260 por mês, o milhão sai em 30 anos, e do bolso saem R$ 94.904."
+    ]
+  },
+  {
+    "numero": "008",
+    "slug": "008-planilha-salario-2500",
+    "titulo": "Seu salário de R$ 2.500: o mês fecha no vermelho",
+    "video_id": "4oZG9pT6fEY",
+    "publicado_em": "2026-10-21",
+    "estreia": "",
+    "simulador": "aporte",
+    "serie": "R$ 50 por mês",
+    "tema": "organizacao",
+    "leitura_min": 6,
+    "linha_fina": "Como organizar o salário de R$ 2.500? Com o gasto médio da faixa no IBGE, faltam R$ 468 por mês: a planilha da média fecha no vermelho antes de chegar no investimento.",
+    "resumo_conta": [
+      "Número real: com R$ 2.500 bruto (R$ 2.299,31 líquido) e o gasto médio da faixa no IBGE, falta R$ 468,26 por mês. Para investir R$ 229,93 por mês, o Lucas precisa gastar R$ 698,19 a menos que a média da faixa (R$ 2.069,38 de consumo, 82,8% do bruto). Se conseguir, tem R$ 2.893,13 em 12 meses.",
+      "Promessa: \"organize suas finanças numa planilha e comece a investir\".",
+      "Diferença: a planilha não cria sobra; ela mostra que, na média, a sobra é negativa, e que o primeiro investimento de quem ganha R$ 2.500 é cortar R$ 468 só para empatar. A família média das duas faixas põe R$ 0,03 e R$ 0,09 por mês em investimento financeiro."
+    ]
+  },
+  {
     "numero": "006",
     "slug": "006-emprestimo-para-investir",
-    "titulo": "Empréstimo de R$ 100 mil para investir vale a pena? Fiz a conta",
+    "titulo": "Empréstimo para investir: você perde R$ 3.494,00",
     "video_id": "tTaJeRIqSRc",
     "publicado_em": "2026-10-20",
     "estreia": "",
@@ -10,7 +136,7 @@
     "serie": "Prova Real",
     "tema": "emprestimo",
     "leitura_min": 5,
-    "linha_fina": "Vale a pena pegar empréstimo para investir? R$ 10 mil emprestados a 6,39% ao mês para investir a 100% do CDI dão, no mínimo, R$ 3.494 de prejuízo em um ano. Fiz a conta com a taxa…",
+    "linha_fina": "Vale a pena pegar empréstimo para investir? Não: R$ 10 mil emprestados para investir a 100% do CDI dão, no mínimo, R$ 3.494 de prejuízo em um ano; com R$ 100 mil, R$ 34.947.",
     "resumo_conta": [
       "Número real: R$ 10.000 emprestados a 6,39% ao mês e investidos a 100% do CDI por 12 meses dão R$ 3.494,73 de prejuízo, no mínimo. Com R$ 100.000, R$ 34.947,27.",
       "Promessa: \"pega o empréstimo, investe, e o rendimento paga a parcela\".",
@@ -20,7 +146,7 @@
   {
     "numero": "005",
     "slug": "005-eleicao-muda-seu-bolso",
-    "titulo": "Quem ganha a eleição não decide o seu rendimento. Fiz a conta",
+    "titulo": "Eleições 2026: R$ 1.000 na Selic venceram 6 de 6",
     "video_id": "-lHhSlqAdIA",
     "publicado_em": "2026-10-19",
     "estreia": "",
@@ -28,7 +154,7 @@
     "serie": "Prova Real",
     "tema": "politica",
     "leitura_min": 7,
-    "linha_fina": "Eleição e investimentos: nas 6 eleições desde 2002, R$ 1.000 na Selic ganharam da inflação em todas. Quem ganha a eleição não decidiu o seu rendimento.",
+    "linha_fina": "Eleições 2026 e os seus investimentos: o que muda? Nas 6 eleições desde 2002, R$ 1.000 na Selic ganharam da inflação em todas, e a inflação de ano de eleição foi quase igual à dos outros anos.",
     "resumo_conta": [
       "Número real: nos 6 anos de eleição desde 2002, R$ 1.000 na Selic ganharam da inflação em todos, bruto e líquido. A inflação mediana foi 5,85%, contra 5,76% nos anos sem eleição.",
       "Promessa: \"se o candidato X ganhar, a bolsa dispara\" e \"se o candidato Y ganhar, seu dinheiro acaba\".",
@@ -38,15 +164,15 @@
   {
     "numero": "004",
     "slug": "004-cafezinho-ou-aluguel",
-    "titulo": "O cafezinho pesa o mesmo que o aluguel. Fiz a conta",
+    "titulo": "Seu cafezinho pesa o mesmo que o aluguel",
     "video_id": "kWsfX6NwNBA",
     "publicado_em": "2026-10-18",
     "estreia": "",
     "simulador": "aporte",
     "serie": "R$ 50 por mês",
     "tema": "gastos",
-    "leitura_min": 2,
-    "linha_fina": "Gastos pequenos de R$ 15 por dia útil custam R$ 3.960 por ano, mais que 20% de um aluguel de R$ 1.500. A goteira pesa o mesmo que o cano.",
+    "leitura_min": 3,
+    "linha_fina": "Como juntar 10 mil: cortar o cafezinho ou o aluguel? R$ 15 por dia útil viram R$ 3.960 por ano, mais que a economia de um aluguel R$ 300 mais barato.",
     "resumo_conta": [
       "Número real: R$ 15 por dia útil custam R$ 3.960 por ano, mais que 20% de um aluguel de R$ 1.500 (R$ 3.600).",
       "Promessa: \"o cafezinho não faz diferença, o problema é o gasto grande\" (e o contrário, \"corte o cafezinho e fique rico\").",
@@ -56,7 +182,7 @@
   {
     "numero": "003",
     "slug": "003-selic-caindo-10-mil",
-    "titulo": "Selic caindo não acabou com a renda fixa. Fiz a conta",
+    "titulo": "Selic caindo! R$ 10 mil perdem R$ 11 por mês",
     "video_id": "Y02BKDKedm0",
     "publicado_em": "2026-10-17",
     "estreia": "",
@@ -64,7 +190,7 @@
     "serie": "R$ 50 por mês",
     "tema": "selic",
     "leitura_min": 4,
-    "linha_fina": "Selic caindo: a queda da Selic de 13,65% para 12%, como o mercado espera para 2027, tira R$ 11 por mês de quem tem R$ 10 mil investidos. A renda fixa não acabou.",
+    "linha_fina": "Selic caindo: onde investir, e quanto você perde? A queda da Selic de hoje para a esperada em 2027 tira R$ 11 por mês de quem tem R$ 10 mil investidos, R$ 136 no ano.",
     "resumo_conta": [
       "Número real: a Selic caindo de 13,65% para 12% tira R$ 11,34 por mês de quem tem R$ 10 mil. R$ 1.126,12 viram R$ 990,00 por ano.",
       "Promessa: \"juros caindo, a renda fixa acabou, vai para a bolsa\".",
@@ -74,7 +200,7 @@
   {
     "numero": "001",
     "slug": "001-cdi-100-nao-e-100",
-    "titulo": "Se você investe a 100% do CDI, está perdendo dinheiro. Fiz a conta",
+    "titulo": "Quanto rende 10 mil no CDI? No máximo 85%",
     "video_id": "0Yrpk1z1URw",
     "publicado_em": "2026-10-16",
     "estreia": "",
@@ -82,7 +208,7 @@
     "serie": "R$ 50 por mês",
     "tema": "conta-digital",
     "leitura_min": 5,
-    "linha_fina": "Quanto rende R$ 10 mil no CDI? A 100% do CDI não é 100%: depois do imposto, você leva de 77,5% a 85%, e uma LCI isenta a 90% do CDI rende mais que um CDB a 100%.",
+    "linha_fina": "Quanto rende 10 mil no CDI? A 100% do CDI, o rendimento não chega inteiro no seu bolso: depois do imposto, R$ 10 mil por um ano deixam R$ 1.126, e uma LCI isenta a 90% do CDI deixa R$ 1.228,50, mais que o CDB a 100% do CDI.",
     "resumo_conta": [
       "Número real: 100% do CDI rende 82,5% do CDI em 12 meses, depois do imposto. R$ 1.126,12 de R$ 1.365,00.",
       "Promessa: \"rende 100% do CDI, seu dinheiro está trabalhando por você\".",

@@ -118,7 +118,7 @@
       var nome = nomeEl ? nomeEl.value.trim() : '';
       if (!EMAIL.test(email)) {
         emailEl.setAttribute('aria-invalid', 'true');
-        erroEmail.innerHTML = ICONES.erro + '<span>' + (email ? 'Confere o e-mail: faltou alguma coisa nele.' : 'Escreve o seu e-mail para receber a planilha.') + '</span>';
+        erroEmail.innerHTML = ICONES.erro + '<span>' + (email ? 'Confere o e-mail: faltou alguma coisa nele.' : 'Escreve o seu e-mail para receber o aviso.') + '</span>';
         erroEmail.hidden = false;
         emailEl.focus();
         return;

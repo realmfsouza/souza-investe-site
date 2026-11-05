@@ -2101,6 +2101,42 @@ html {
   padding-top: var(--space-4);
 }
 
+/* Home: os últimos vídeos, no lugar do "em breve" (escrito pelo publicar_site.py do OS) */
+.ultimos {
+  border-top: 2px solid var(--ink);
+  padding-top: var(--space-4);
+}
+
+.ultimos > h2 {
+  font-size: 1.5rem;
+  margin-top: var(--space-3);
+}
+
+.ultimos > p {
+  margin-top: var(--space-3);
+  max-width: 52ch;
+}
+
+.ultimos .posts-grade {
+  border-top: 0;
+  margin-top: var(--space-2);
+}
+
+.post-cartao h3 {
+  font-size: 1.1875rem;
+  line-height: 1.25;
+}
+
+.post-cartao h3 a {
+  text-decoration: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .post-cartao h3 a:hover {
+    text-decoration: underline;
+  }
+}
+
 /* ---------- Movimento ---------- */
 
 @media (prefers-reduced-motion: reduce) {
