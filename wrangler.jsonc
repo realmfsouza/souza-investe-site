@@ -1,0 +1,24 @@
+// O banco D1 "souza-investe-lista" existe desde 2026-11-04 (criado pelo Matheus no painel da
+// Cloudflare), e o database_id abaixo é o dele. O id do banco é identificador, não segredo.
+//
+// Modo Worker com assets estáticos: o site sai da pasta inteira (o que o .assetsignore deixa) e o
+// worker/index.js só atende /api/lista. Deploy: npx wrangler deploy (README, "Publicar").
+// A Cloudflare Pages ignora este arquivo, porque ele não tem pages_build_output_dir; nesse modo vale
+// a pasta functions/ (a mesma fonte do coletor).
+{
+  "name": "souza-investe-site",
+  "main": "worker/index.js",
+  "compatibility_date": "2025-09-01",
+  "assets": {
+    "directory": ".",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "souza-investe-lista",
+      "database_id": "2f8da646-5b21-408c-904f-b3b25b29e803"
+    }
+  ]
+}

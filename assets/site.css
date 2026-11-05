@@ -2153,3 +2153,14 @@ html {
     scroll-behavior: auto !important;
   }
 }
+
+/* Lista de e-mail: o campo-isca do formulário. Fica fora da tela e fora do teclado; gente não vê, robô
+   preenche, e o coletor descarta (functions/api/lista.js). */
+.campo-isca {
+  position: absolute;
+  left: -10000px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}

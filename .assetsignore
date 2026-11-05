@@ -1,0 +1,15 @@
+# O que NÃO vai para o ar no modo Worker (wrangler.jsonc, assets.directory "."). Sobe só página e dado
+# público: as páginas, assets/, dados/, blog/, s/ e a 404.html.
+.git
+.git*
+.assetsignore
+.nojekyll
+.wrangler/
+.dev.vars*
+node_modules/
+README.md
+wrangler.jsonc
+worker/
+functions/
+modelos/
+docs/
