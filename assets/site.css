@@ -1424,6 +1424,11 @@ details.conta-resumo li + li {
   margin-top: var(--space-6);
 }
 
+/* No celular a grade não tem colunas: sem isto, a tabela larga das taxas e o link longo empurram a
+   coluna para fora da tela, em vez de rolar dentro do .tabela-wrap. */
+.post-grade > * { min-width: 0; }
+.prosa a { overflow-wrap: anywhere; }
+
 .post-lado {
   display: contents;
 }
