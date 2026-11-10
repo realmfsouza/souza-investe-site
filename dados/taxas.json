@@ -1,5 +1,5 @@
 {
-  "atualizado_em": "2026-11-04T21:37:14-03:00",
+  "atualizado_em": "2026-11-09T21:15:05-03:00",
   "fonte": "Banco Central do Brasil, SGS",
   "selic_meta": {
     "valor": 13.75,
@@ -7,15 +7,15 @@
   },
   "cdi_anual": {
     "valor": 13.65,
-    "data": "2026-11-03"
+    "data": "2026-11-06"
   },
   "ipca_12m": {
     "valor": 4.58,
     "data": "2026-09-01"
   },
   "tesouro": {
-    "data_base": "2026-10-30",
-    "consultado_em": "2026-11-04T21:37:14-03:00",
+    "data_base": "2026-11-06",
+    "consultado_em": "2026-11-09T21:15:05-03:00",
     "fonte": "Tesouro Nacional, Tesouro Transparente: Preço e Taxa dos títulos ofertados pelo Tesouro Direto",
     "url": "https://www.tesourotransparente.gov.br/ckan/dataset/df56aa42-484a-4a59-8184-7676580c81e3/resource/796d2059-14e9-44e3-80c9-2d9e30b405c1/download/PrecoTaxaTesouroDireto.csv",
     "leitura": "taxa de compra ao ano, como o Tesouro publica: prefixado é a taxa cheia, ipca é a taxa real acima do IPCA e selic é o acréscimo sobre a Selic",
@@ -30,7 +30,7 @@
         "tipo": "Tesouro Selic",
         "indexador": "selic",
         "vencimento": "2028-03-01",
-        "taxa": 0.02
+        "taxa": 0.03
       },
       {
         "tipo": "Tesouro Selic",
@@ -42,73 +42,73 @@
         "tipo": "Tesouro Selic",
         "indexador": "selic",
         "vencimento": "2031-03-01",
-        "taxa": 0.1
+        "taxa": 0.11
       },
       {
         "tipo": "Tesouro Prefixado",
         "indexador": "prefixado",
         "vencimento": "2027-01-01",
-        "taxa": 13.48
+        "taxa": 13.59
       },
       {
         "tipo": "Tesouro Prefixado",
         "indexador": "prefixado",
         "vencimento": "2028-01-01",
-        "taxa": 14.32
+        "taxa": 14.28
       },
       {
         "tipo": "Tesouro Prefixado",
         "indexador": "prefixado",
         "vencimento": "2029-01-01",
-        "taxa": 14.89
+        "taxa": 14.78
       },
       {
         "tipo": "Tesouro Prefixado",
         "indexador": "prefixado",
         "vencimento": "2031-01-01",
-        "taxa": 15.3
+        "taxa": 15.09
       },
       {
         "tipo": "Tesouro Prefixado",
         "indexador": "prefixado",
         "vencimento": "2032-01-01",
-        "taxa": 15.38
+        "taxa": 15.17
       },
       {
         "tipo": "Tesouro IPCA+",
         "indexador": "ipca",
         "vencimento": "2029-05-15",
-        "taxa": 7.8
+        "taxa": 7.68
       },
       {
         "tipo": "Tesouro IPCA+",
         "indexador": "ipca",
         "vencimento": "2032-08-15",
-        "taxa": 7.89
+        "taxa": 7.86
       },
       {
         "tipo": "Tesouro IPCA+",
         "indexador": "ipca",
         "vencimento": "2035-05-15",
-        "taxa": 7.88
+        "taxa": 7.87
       },
       {
         "tipo": "Tesouro IPCA+",
         "indexador": "ipca",
         "vencimento": "2040-08-15",
-        "taxa": 7.56
+        "taxa": 7.54
       },
       {
         "tipo": "Tesouro IPCA+",
         "indexador": "ipca",
         "vencimento": "2045-05-15",
-        "taxa": 7.32
+        "taxa": 7.43
       },
       {
         "tipo": "Tesouro IPCA+",
         "indexador": "ipca",
         "vencimento": "2050-08-15",
-        "taxa": 7.27
+        "taxa": 7.44
       }
     ]
   }

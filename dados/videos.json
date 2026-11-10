@@ -1,5 +1,23 @@
 [
   {
+    "numero": "014",
+    "slug": "014-renegociar-com-desconto",
+    "titulo": "Como quitar dívida sem o banco te LASCAR",
+    "video_id": "JObdZC5DG5U",
+    "publicado_em": "2026-11-09",
+    "estreia": "",
+    "simulador": "parcelar",
+    "serie": "Parcelar ou à vista",
+    "tema": "divida",
+    "leitura_min": 12,
+    "linha_fina": "Como quitar dívida do cartão de crédito sem cair na proposta pronta do credor? Quem deve no cartão costuma negociar com medo de a dívida crescer sem fim, e é nesse medo que a proposta chega.",
+    "resumo_conta": [
+      "Número real: a mesma dívida de R$ 3.000 sai por R$ 2.400 à vista ou R$ 4.278,96 parcelada, e o à vista com empréstimo pessoal médio sai por R$ 4.769,04, mais caro que parcelar.",
+      "Promessa: \"desconto de 90% na renegociação, é só aceitar\" e \"renegociou, limpou o nome, acabou o problema\".",
+      "Diferença: parcelar custa R$ 1.878,96 a mais que o à vista; quitar com empréstimo não consignado custa R$ 490,08 a mais que parcelar. O desconto só compensa com empréstimo abaixo de 5,26% ao mês. E os 90% da lei são o desconto que o credor dá para a União, não o seu."
+    ]
+  },
+  {
     "numero": "033",
     "slug": "033-educacao-financeira-em-10-minutos",
     "titulo": "Educação financeira básica em menos de 20 minutos",
